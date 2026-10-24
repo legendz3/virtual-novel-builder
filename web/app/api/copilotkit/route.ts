@@ -25,15 +25,38 @@ function capStrings(value: unknown): unknown {
 }
 
 type Event = Parameters<LangGraphAgent["dispatchEvent"]>[0];
+type Json = Record<string, unknown>;
+
+// The UI reads only these agent-state keys (the board). Full LangGraph state also carries the whole message history,
+// which the adapter re-sends as a snapshot on every step (~1 MB on long chapters) and freezes the page; messages already
+// reach the chat through their own events.
+const UI_STATE_KEYS = ["project", "chapter", "status"];
+const pickUiState = (snapshot: unknown): Json =>
+  Object.fromEntries(Object.entries((snapshot ?? {}) as Json).filter(([k]) => UI_STATE_KEYS.includes(k)));
+
+/** Shape an AG-UI event for the browser: board-only state, capped strings. Returns null to drop the event. */
+function uiSafe(event: Json): Json | null {
+  let e = event;
+  if (e.type === "STATE_SNAPSHOT") e = { ...e, snapshot: pickUiState(e.snapshot) };
+  if (e.type === "STATE_DELTA") {
+    const ops = ((e.delta as { path?: string }[]) ?? []).filter((op) =>
+      UI_STATE_KEYS.some((k) => op.path === `/${k}` || op.path?.startsWith(`/${k}/`)),
+    );
+    if (!ops.length) return null;
+    e = { ...e, delta: ops };
+  }
+  // Cheap size probe first; only oversized events pay for the deep walk.
+  const size = JSON.stringify(e).length;
+  if (size <= MAX_UI_EVENT) return e;
+  const capped = capStrings(e) as Json;
+  console.warn(`[ui-cap] ${String(e.type)} ${Math.round(size / 1024)} KB -> ${Math.round(JSON.stringify(capped).length / 1024)} KB`);
+  return capped;
+}
 
 class UiSafeLangGraphAgent extends LangGraphAgent {
   dispatchEvent(event: Event): boolean {
-    // Cheap size probe first; only oversized events pay for the deep walk.
-    const size = JSON.stringify(event).length;
-    if (size <= MAX_UI_EVENT) return super.dispatchEvent(event);
-    const capped = capStrings(event) as Event;
-    console.warn(`[ui-cap] ${event.type} ${Math.round(size / 1024)} KB -> ${Math.round(JSON.stringify(capped).length / 1024)} KB`);
-    return super.dispatchEvent(capped);
+    const safe = uiSafe(event as unknown as Json);
+    return safe ? super.dispatchEvent(safe as unknown as Event) : true;
   }
 }
 
@@ -43,7 +66,7 @@ const BACKEND = process.env.LANGGRAPH_DEPLOYMENT_URL || "http://localhost:2024";
 
 const runtime = new CopilotRuntime({
   // Restores each chapter's conversation (and pending approval cards) from LangGraph after a reload.
-  runner: new LangGraphHistoryRunner(BACKEND, (e) => capStrings(e) as Record<string, unknown>),
+  runner: new LangGraphHistoryRunner(BACKEND, uiSafe),
   agents: {
     producer: new UiSafeLangGraphAgent({
       deploymentUrl: BACKEND,

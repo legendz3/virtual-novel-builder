@@ -56,6 +56,17 @@ export function toAguiMessages(messages: LcMessage[]): AguiMessage[] {
   });
 }
 
+// A chapter thread is a long-lived raw log (deepagents keeps it intact; the model sees a summary). The chat only needs the
+// recent conversation: restore the tail, starting at an author message so no tool result is cut from its call.
+const RESTORE_MESSAGES = 50;
+
+export function recent(messages: LcMessage[], limit = RESTORE_MESSAGES): LcMessage[] {
+  if (messages.length <= limit) return messages;
+  const tail = messages.slice(-limit);
+  const start = tail.findIndex((m) => m.type === "human");
+  return start > 0 ? tail.slice(start) : tail;
+}
+
 /**
  * The default in-memory runner only replays events it saw during this web server's lifetime, so a reloaded page (or a
  * restarted server) shows an empty chat. LangGraph already persists every thread: when nothing is running here, rebuild
@@ -64,7 +75,7 @@ export function toAguiMessages(messages: LcMessage[]): AguiMessage[] {
 export class LangGraphHistoryRunner extends InMemoryAgentRunner {
   constructor(
     private readonly deploymentUrl: string,
-    private readonly sanitize: (event: AguiEvent) => AguiEvent = (e) => e,
+    private readonly sanitize: (event: AguiEvent) => AguiEvent | null = (e) => e,
   ) {
     super();
   }
@@ -87,9 +98,12 @@ export class LangGraphHistoryRunner extends InMemoryAgentRunner {
         const { messages = [], ...values } = state.values ?? {};
         const interrupts = (state.tasks ?? []).flatMap((t) => t.interrupts ?? []);
         const runId = `restored-${request.threadId}`;
-        const emit = (e: AguiEvent) => subscriber.next(this.sanitize(e));
+        const emit = (e: AguiEvent) => {
+          const safe = this.sanitize(e);
+          if (safe) subscriber.next(safe);
+        };
         emit({ type: "RUN_STARTED", threadId: request.threadId, runId });
-        emit({ type: "MESSAGES_SNAPSHOT", messages: toAguiMessages(messages) });
+        emit({ type: "MESSAGES_SNAPSHOT", messages: toAguiMessages(recent(messages)) });
         emit({ type: "STATE_SNAPSHOT", snapshot: values });
         emit({
           type: "RUN_FINISHED",

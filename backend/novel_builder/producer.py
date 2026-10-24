@@ -5,6 +5,8 @@ import json
 from typing import NotRequired
 
 from deepagents import DeepAgentState, create_deep_agent
+from deepagents.middleware.filesystem import FilesystemMiddleware
+from deepagents.middleware.summarization import SummarizationMiddleware
 from langchain_core.runnables import RunnableConfig
 
 from novel_builder.agents import developer, director, graphic_designer, qa, writer
@@ -99,6 +101,17 @@ def _run_context(story_id: str, root, chapter: int | None) -> str:
             + f"\n{selected}")
 
 
+def _context_middleware(model, backend):
+    """Bound the Producer's context. deepagents scales its defaults to the model's window (summarize at 85% of 1M tokens
+    for gpt-6-sol), which a coordinator never reaches, so every call resent the whole chapter conversation. The Producer
+    only coordinates: summarize early, and move any large tool result to a scratch file it can re-read on demand."""
+    return [
+        FilesystemMiddleware(backend=backend, tool_token_limit_before_evict=5_000),
+        SummarizationMiddleware(model=model, backend=backend, trigger=("tokens", 80_000), keep=("messages", 20),
+                                truncate_args_settings={"trigger": ("tokens", 60_000), "keep": ("messages", 20)}),
+    ]
+
+
 async def make_graph(config: RunnableConfig):
     """Built per run by the LangGraph server: rooted at the story selected in the sidebar, with the owner's credentials."""
     configurable = config.get("configurable", {})
@@ -115,13 +128,14 @@ async def make_graph(config: RunnableConfig):
         return create_deep_agent(model=ctx.chat("openai:gpt-6-sol", "low"), system_prompt=SYSTEM_PROMPT + NO_STORY_PROMPT,
                                  tools=[], state_schema=ProducerState, name="producer")
     context = await asyncio.to_thread(_run_context, story_id, root, chapter)
+    model = ctx.chat("openai:gpt-6-sol", "low")
     return create_deep_agent(
-        model=ctx.chat("openai:gpt-6-sol", "low"),
+        model=model,
         system_prompt=SYSTEM_PROMPT + context,
         tools=make_producer_tools(ctx.backend, story_id),
         subagents=[m.subagent(ctx) for m in (writer, director, graphic_designer, developer, qa)],
         backend=ctx.backend,
-        middleware=[OmitImageResults()],
+        middleware=[*_context_middleware(model, ctx.backend), OmitImageResults()],
         state_schema=ProducerState,
         name="producer",
     )
