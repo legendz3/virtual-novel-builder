@@ -9,9 +9,9 @@ import os
 import re
 from pathlib import Path
 
-from deepagents.backends import LocalShellBackend
+from deepagents.backends import CompositeBackend, FilesystemBackend, LocalShellBackend
 
-from novel_builder.settings import PROJECTS_DIR, TEMPLATE_DIR
+from novel_builder.settings import PROJECTS_DIR, ROOT, TEMPLATE_DIR
 
 _SHELL_ENV_KEYS = ("PATH", "HOME", "LANG", "TMPDIR")
 
@@ -24,13 +24,30 @@ def owner_dir(owner: str) -> Path:
     return PROJECTS_DIR / slugify(owner)  # slugify keeps a crafted owner id inside PROJECTS_DIR
 
 
-def get_backend(root: Path):
-    """File + shell backend rooted at one story folder. No I/O here: the graph factory runs on the event loop."""
+# Agent scratch output (oversized tool results, summarized conversation history, offloaded media) is routed here,
+# outside the story folder, so it never lands in the author's repository.
+ARTIFACTS_ROOT = "/.novel-builder"
+SCRATCH_DIR = ROOT / ".data" / "scratch"
+
+
+def scratch_dir(owner: str, story_id: str) -> Path:
+    return SCRATCH_DIR / slugify(owner) / slugify(story_id)
+
+
+def get_backend(root: Path, scratch: Path | None = None):
+    """File + shell backend rooted at one story folder. No I/O here: the graph factory runs on the event loop.
+
+    With `scratch`, deepagents' artifacts (under ARTIFACTS_ROOT) are stored in that folder instead of the story folder.
+    """
     if os.environ.get("NB_WORKSPACE", "local") != "local":
         raise NotImplementedError(os.environ["NB_WORKSPACE"])
     # ponytail: unsandboxed local shell shared by all agents; swap for a container sandbox backend before multi-tenant use
     env = {k: os.environ[k] for k in _SHELL_ENV_KEYS if k in os.environ}
-    return LocalShellBackend(root_dir=root, virtual_mode=True, timeout=900, env=env)
+    story = LocalShellBackend(root_dir=root, virtual_mode=True, timeout=900, env=env)
+    if scratch is None:
+        return story
+    return CompositeBackend(default=story, routes={f"{ARTIFACTS_ROOT}/": FilesystemBackend(root_dir=scratch, virtual_mode=True)},
+                            artifacts_root=ARTIFACTS_ROOT)
 
 
 def create_from_template(root: Path) -> int:

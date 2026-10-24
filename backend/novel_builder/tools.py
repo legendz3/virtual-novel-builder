@@ -176,6 +176,15 @@ def read_status(backend, chapter: int) -> dict:
     return json.loads(res.content) if not res.error else {"chapter": chapter, "complete": False}
 
 
+# Older stories keep long histories in status.json (Beijing Heartbeat's run to ~80 KB); the producer only needs the
+# pipeline fields, including the older stage names those stories use.
+_SUMMARY_KEYS = [*STAGES, "complete", "phase", "art", "directorReview", "implementation", "documentation", "postmortem", "blockers"]
+
+
+def status_summary(status: dict) -> dict:
+    return {k: status[k] for k in _SUMMARY_KEYS if k in status}
+
+
 def _chapter(runtime: ToolRuntime) -> int | None:
     """Chapter chosen in this conversation, else the one selected in the author's sidebar."""
     return runtime.state.get("chapter") or (runtime.config.get("configurable") or {}).get("chapter")
@@ -187,8 +196,8 @@ def make_producer_tools(backend, story_id: str):
         """Work on this chapter number of the current story (the sidebar's selection is the default).
         Returns the chapter's current status. Use it to start a new chapter (next number) or switch chapters."""
         status = read_status(backend, chapter)
-        return Command(update={"project": story_id, "chapter": chapter, "status": status, "messages": [
-            ToolMessage(f"Selected chapter {chapter}. Status: {json.dumps(status)}", tool_call_id=runtime.tool_call_id)]})
+        return Command(update={"project": story_id, "chapter": chapter, "status": status_summary(status), "messages": [
+            ToolMessage(f"Selected chapter {chapter}. Status: {json.dumps(status_summary(status))}", tool_call_id=runtime.tool_call_id)]})
 
     @tool
     def update_status(stage: str, value: str, runtime: ToolRuntime) -> Command:
@@ -204,8 +213,8 @@ def make_producer_tools(backend, story_id: str):
         except ValueError as e:
             return Command(update={"messages": [ToolMessage(f"ERROR: {e}", tool_call_id=runtime.tool_call_id)]})
         backend.upload_files([(_status_path(chapter), (json.dumps(status, indent=2) + "\n").encode())])
-        return Command(update={"project": story_id, "chapter": chapter, "status": status, "messages": [
-            ToolMessage(f"status: {json.dumps(status)}", tool_call_id=runtime.tool_call_id)]})
+        return Command(update={"project": story_id, "chapter": chapter, "status": status_summary(status), "messages": [
+            ToolMessage(f"status: {json.dumps(status_summary(status))}", tool_call_id=runtime.tool_call_id)]})
 
     @tool
     def request_author_approval(gate: str, file: str, summary: str, runtime: ToolRuntime) -> str:

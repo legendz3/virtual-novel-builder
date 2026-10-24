@@ -10,9 +10,9 @@ from langchain_core.runnables import RunnableConfig
 from novel_builder.agents import developer, director, graphic_designer, qa, writer
 from novel_builder import codex_oauth
 from novel_builder.models import RunContext
-from novel_builder.tools import OmitImageResults, make_producer_tools
+from novel_builder.tools import OmitImageResults, make_producer_tools, status_summary
 from novel_builder.stories import StoryError, chapters, read_status, story_root
-from novel_builder.workspace import get_backend
+from novel_builder.workspace import get_backend, scratch_dir
 
 SYSTEM_PROMPT = """\
 You are the Producer of a visual-novel studio. You talk with the author (the user) and run chapter production by
@@ -93,7 +93,7 @@ def _run_context(story_id: str, root, chapter: int | None) -> str:
     listing = [f"- chapter {c['chapter']}: " + ("complete" if c["status"].get("complete") else
                ", ".join(f"{k}={v}" for k, v in c["status"].items() if k not in ("chapter", "complete") and isinstance(v, str)) or "not started")
                for c in chapters(root)]
-    selected = (f"Selected chapter: {chapter}. Its status.json: {json.dumps(read_status(root, chapter))}"
+    selected = (f"Selected chapter: {chapter}. Its status: {json.dumps(status_summary(read_status(root, chapter)))}"
                 if chapter else "No chapter selected yet.")
     return (f"\n## Run context\nStory: {story_id} (folder {root}).\nChapters:\n" + ("\n".join(listing) or "- none yet")
             + f"\n{selected}")
@@ -109,7 +109,8 @@ async def make_graph(config: RunnableConfig):
         root = await asyncio.to_thread(story_root, owner, story_id) if story_id else None
     except StoryError:
         root = None
-    ctx = RunContext(owner=owner, backend=get_backend(root) if root else None, codex_models=(creds or {}).get("models", []))
+    backend = get_backend(root, scratch_dir(owner, story_id)) if root else None
+    ctx = RunContext(owner=owner, backend=backend, codex_models=(creds or {}).get("models", []))
     if not root:
         return create_deep_agent(model=ctx.chat("openai:gpt-6-sol", "low"), system_prompt=SYSTEM_PROMPT + NO_STORY_PROMPT,
                                  tools=[], state_schema=ProducerState, name="producer")

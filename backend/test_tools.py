@@ -71,3 +71,19 @@ from langchain_core.messages import HumanMessage, SystemMessage
 payload = codex.chat("openai:gpt-6-luna")._get_request_payload([SystemMessage("Be terse."), HumanMessage("hi")])
 assert payload["instructions"] == "Be terse." and all(i.get("role") != "system" for i in payload["input"])
 print("ok codex payload")
+
+# Agent artifacts go to the scratch folder, story files and shell stay in the story folder.
+from deepagents.middleware.filesystem import FilesystemMiddleware
+from novel_builder.workspace import ARTIFACTS_ROOT, get_backend as _gb
+with tempfile.TemporaryDirectory() as tmp:
+    story_dir, scratch = Path(tmp) / "story", Path(tmp) / "scratch"
+    story_dir.mkdir()
+    b = _gb(story_dir, scratch)
+    b.upload_files([(f"{ARTIFACTS_ROOT}/large_tool_results/call_1", b"big"), ("/story/chapters/chapter-01.md", b"# 1")])
+    assert (scratch / "large_tool_results" / "call_1").read_bytes() == b"big"
+    assert not (story_dir / ".novel-builder").exists() and not (story_dir / "large_tool_results").exists()
+    assert (story_dir / "story" / "chapters" / "chapter-01.md").exists()
+    assert b.execute("pwd").output.strip() == str(story_dir.resolve())
+    fs = FilesystemMiddleware(backend=b)
+    assert fs._large_tool_results_prefix == f"{ARTIFACTS_ROOT}/large_tool_results"
+print("ok scratch routing")
