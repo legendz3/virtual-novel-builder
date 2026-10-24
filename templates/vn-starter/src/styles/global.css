@@ -1,0 +1,94 @@
+@import url("/assets/fonts/fonts.css");
+:root {
+  font-family: "Avenir Next", Avenir, system-ui, sans-serif;
+  color: #f1ebe7;
+  background: #08090d;
+  font-synthesis: none;
+  line-height: 1.5;
+  --space-2: 1rem;
+  --font-small: 0.875rem;
+  --game-viewport: 100rem;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 280px;
+}
+button,
+.button {
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border: 1px solid #74666a;
+  border-radius: 4px;
+  background: #edddd5;
+  color: #231c23;
+  text-decoration: none;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+a {
+  color: #e2d1d4;
+}
+:focus-visible {
+  outline: 2px solid #ecc4a4;
+  outline-offset: 5px;
+}
+h1 {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+p {
+  max-width: 65ch;
+}
+.page {
+  max-width: 65rem;
+  margin: auto;
+  padding: clamp(1.25rem, 5vw, 5rem);
+}
+.eyebrow {
+  color: #c2a4a5;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.debug-panel {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: min(100% - 2rem, 100rem);
+  border: 1px solid #455560;
+  font-size: 0.875rem;
+}
+summary {
+  cursor: pointer;
+  min-height: 32px;
+}
+.notice {
+  position: relative;
+  z-index: 30;
+  margin: 0;
+  max-width: none;
+  padding: 0.75rem 1rem;
+  background: #543c29;
+}

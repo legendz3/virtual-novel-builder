@@ -1,0 +1,161 @@
+[
+  {
+    "id": "mind-your-luggage",
+    "path": "/assets/audio/dialogue/announcements/mind-your-luggage.mp3",
+    "spokenText": "请注意您的行李……",
+    "speakerId": "announcement",
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "b9ac920c84c0bc837f8f5091873eb97d8a51c5fa350c9e37967ec063be3c7b1a",
+      "sources": ["public/assets/README.md", "story/voice-cast.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "dialogue",
+        "chapterId": "chapter-one",
+        "eventId": "luggage-announcement"
+      }
+    ]
+  },
+  {
+    "id": "phrase-i-want",
+    "path": "/assets/audio/phrases/i-want.mp3",
+    "spokenText": "我要",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "477e3a5df73f38518754e347e379aa0ae22337d54c7f92e019e08d225b19205c",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "i-want"
+      }
+    ]
+  },
+  {
+    "id": "phrase-extra-sugar",
+    "path": "/assets/audio/phrases/extra-sugar.mp3",
+    "spokenText": "多放糖",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "1cce5ff4bba08b2f45b6c60b67c0d023342cc5b16acea1fb4cab9daf5ee65bc5",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "extra-sugar"
+      }
+    ]
+  },
+  {
+    "id": "phrase-iced-latte",
+    "path": "/assets/audio/phrases/iced-latte.mp3",
+    "spokenText": "一杯冰拿铁",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "b2e810b73d77ed946c4d7db7fcb9610674b52067c88bffe8f462aebd25d67fc2",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "iced-latte"
+      }
+    ]
+  },
+  {
+    "id": "phrase-no-sugar",
+    "path": "/assets/audio/phrases/no-sugar.mp3",
+    "spokenText": "不要糖",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "15680199fdd985245863742a3b42abab1493fcfda9d653f03ab5d33710bd0335",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "no-sugar"
+      }
+    ]
+  },
+  {
+    "id": "phrase-hot-latte",
+    "path": "/assets/audio/phrases/hot-latte.mp3",
+    "spokenText": "一杯热拿铁",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "579e754c04307e56c881ea82bc37a50cedf9a123bef5ef696a964f9bd9d299d4",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "hot-latte"
+      }
+    ]
+  },
+  {
+    "id": "phrase-i-like",
+    "path": "/assets/audio/phrases/i-like.mp3",
+    "spokenText": "我喜欢",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "94a30307b8157a01b1ef8301f6b91be65e378ce0e4ad76e2a728f330235113cc",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "i-like"
+      }
+    ]
+  },
+  {
+    "id": "phrase-no-ice",
+    "path": "/assets/audio/phrases/no-ice.mp3",
+    "spokenText": "不要冰",
+    "speakerId": null,
+    "voiceId": null,
+    "provenance": {
+      "kind": "retained",
+      "sha256": "96fefb1f478b32536aef0ec30612aa970d61c055f7707eac1e7d8f6f60aebe76",
+      "sources": ["public/assets/README.md"]
+    },
+    "allowedUsages": [
+      {
+        "kind": "phrase-tile",
+        "chapterId": "chapter-two",
+        "eventId": "coffee-order",
+        "tileId": "no-ice"
+      }
+    ]
+  }
+]

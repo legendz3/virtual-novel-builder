@@ -1,0 +1,391 @@
+.phrase-builder {
+  position: absolute;
+  inset: 5% auto 5% 5%;
+  width: 56%;
+  padding: 1.5rem 1.7rem 0;
+  background: #10131df7;
+  color: #f4eeea;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  /* Keep focused or scrolled-to tiles clear of the sticky action footer. */
+  scroll-padding-bottom: 6rem;
+}
+.phrase-builder:focus {
+  outline: none;
+}
+.phrase-header {
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #51434c;
+}
+.phrase-header .dialogue-speaker {
+  margin-bottom: 0.3rem;
+}
+.phrase-question {
+  font:
+    1.65rem/1.5 "Songti SC",
+    serif;
+  margin: 0;
+}
+.phrase-question-support {
+  margin: 0.2rem 0 0;
+  color: #cfc3c9;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.phrase-builder h2 {
+  font:
+    400 1.3rem/1.4 Georgia,
+    serif;
+  margin: 1rem 0 0.35rem;
+}
+.phrase-goal {
+  margin: 0 0 1rem;
+  color: #f0cdd0;
+  font-size: 0.95rem;
+}
+.phrase-section-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0.7rem 0 0.4rem;
+}
+.phrase-section-label h3 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.phrase-section-label:has(.phrase-meanings-toggle) {
+  margin-block: 0;
+  padding-block: 0.25rem;
+}
+.phrase-clear {
+  border: 0;
+  background: transparent;
+  padding: 0.3rem;
+  color: #d5c3cf;
+  font-size: 0.75rem;
+}
+.phrase-meanings-toggle {
+  min-height: 44px;
+  flex-shrink: 0;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid #e6bfc2;
+  border-radius: 4px;
+  background: #4a3345;
+  color: #fff1e8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.phrase-meanings-toggle:hover {
+  background: #68485e;
+}
+.phrase-meanings-toggle[aria-pressed="true"] {
+  background: #e6bfc2;
+  color: #291e29;
+}
+.phrase-meanings-toggle[aria-pressed="true"]:hover {
+  background: #f3d6d8;
+}
+.phrase-slots {
+  display: grid;
+  grid-template-columns: repeat(var(--phrase-slots), minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.phrase-slot {
+  min-width: 0;
+}
+.phrase-slot-label {
+  display: block;
+  font-size: 0.65rem;
+  color: #cfc3c9;
+  margin-bottom: 0.3rem;
+}
+.phrase-slot [data-slot] {
+  width: 100%;
+  min-height: 76px;
+  padding: 0.45rem 0.25rem;
+  background: #191b27;
+  border: 1px dashed #9b8392;
+  border-radius: 4px;
+  color: #f4eeea;
+}
+.phrase-slot[data-filled="true"] [data-slot] {
+  border-style: solid;
+  border-color: #d1a4b5;
+  background: #342a37;
+  cursor: grab;
+}
+.phrase-empty {
+  color: #d7c6cd;
+  font-size: 1.5rem;
+}
+.phrase-placed {
+  display: block;
+  animation: phrase-place 180ms ease-out;
+}
+.phrase-bank {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+.phrase-tile {
+  display: flex;
+  min-width: 0;
+  border: 1px solid #7b6070;
+  background: #211d29;
+  border-radius: 4px;
+}
+.phrase-select {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  min-height: 66px;
+  text-align: left;
+  padding: 0.65rem 0.8rem;
+  border: 0;
+  background: transparent;
+  border-radius: 3px;
+  color: #f4eeea;
+  cursor: grab;
+}
+.phrase-select:hover:not(:disabled),
+.phrase-slot [data-slot]:hover {
+  background: #403040;
+  border-color: #e6bfc2;
+}
+.phrase-select:active {
+  cursor: grabbing;
+}
+.phrase-select:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+.phrase-speaker {
+  flex: 0 0 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #7b6070;
+  border-radius: 0 3px 3px 0;
+  background: #352838;
+  color: #f4d6dc;
+}
+.phrase-speaker svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.phrase-speaker:hover:not(:disabled) {
+  background: #68485e;
+}
+.phrase-speaker[data-playing="true"] {
+  background: #e6bfc2;
+  color: #291e29;
+}
+.phrase-speaker:disabled {
+  opacity: 0.4;
+}
+.phrase-audio-status {
+  margin: 0.5rem 0 0;
+  color: #cfc3c9;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.phrase-hanzi {
+  display: block;
+  font:
+    1.2rem/1.5 "Songti SC",
+    serif;
+  overflow-wrap: anywhere;
+}
+.phrase-meaning {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.7rem;
+  color: #d8c7d1;
+  line-height: 1.3;
+}
+.phrase-instruction {
+  margin: 0 0 0.65rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #cfc3c9;
+}
+.phrase-actions {
+  position: sticky;
+  bottom: 0;
+  background: #10131d;
+  padding: 0.9rem 0;
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.phrase-actions > span {
+  font-size: 0.7rem;
+  color: #cfc3c9;
+  line-height: 1.4;
+}
+.phrase-submit {
+  flex-shrink: 0;
+  gap: 1.2rem;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border: 1px solid #d9a4b5;
+  border-radius: 4px;
+  background: #613e50;
+  color: #fff1e8;
+  font-size: 0.85rem;
+}
+.phrase-submit:hover:not(:disabled) {
+  background: #80536a;
+}
+.phrase-submit:disabled {
+  opacity: 0.5;
+}
+.phrase-builder button:focus-visible {
+  outline: 2px solid #e6bfc2;
+  outline-offset: 3px;
+}
+.phrase-coaching {
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  background: #272a39;
+  border-radius: 4px;
+}
+.phrase-coaching p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 0.4rem;
+}
+.phrase-coaching strong {
+  color: #e6bfc2;
+  margin-right: 0.5rem;
+  font-size: 0.7rem;
+}
+.phrase-coaching button {
+  min-height: 44px;
+  background: transparent;
+  border: 1px solid #b6a3bd;
+  color: #f4eeea;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+@keyframes phrase-place {
+  from {
+    opacity: 0.5;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-view="phrase-builder"] .phaser-host {
+    width: 200%;
+    left: -97%;
+    top: 0;
+  }
+  .game-viewport[data-view="phrase-builder"] .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 12%, #10131d99 32%, #10131d 56%);
+  }
+  .phrase-builder {
+    inset: 24% 3% 2%;
+    width: auto;
+    padding: 0.9rem 0.9rem 0;
+  }
+  .phrase-header {
+    padding-bottom: 0.55rem;
+  }
+  .phrase-header .dialogue-speaker {
+    display: inline;
+    margin-right: 0.65rem;
+  }
+  .phrase-question {
+    display: inline;
+    font-size: 1.25rem;
+  }
+  .phrase-question-support {
+    font-size: 0.7rem;
+  }
+  .phrase-builder h2 {
+    /* The spoken question and goal identify the task in the compact phone layout. */
+    display: none;
+  }
+  .phrase-goal {
+    font-size: 0.8rem;
+    margin-top: 0.65rem;
+    margin-bottom: 0.6rem;
+  }
+  .phrase-bank {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+  .phrase-builder[data-audio="true"] .phrase-bank {
+    /* Two columns leave room for Chinese text and a separate 44px listen target. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .phrase-select {
+    min-height: 55px;
+    padding: 0.4rem 0.35rem;
+  }
+  .phrase-bank .phrase-hanzi {
+    font-size: 1.05rem;
+  }
+  .phrase-bank .phrase-meaning {
+    font-size: 0.65rem;
+  }
+  .phrase-slot [data-slot] {
+    min-height: 62px;
+  }
+  .phrase-slots {
+    gap: 0.35rem;
+    grid-template-columns: repeat(min(var(--phrase-slots), 3), minmax(0, 1fr));
+  }
+  .phrase-slot .phrase-hanzi {
+    font-size: 1rem;
+  }
+  .phrase-slot .phrase-meaning {
+    font-size: 0.6rem;
+  }
+  .phrase-actions {
+    padding: 0.6rem 0;
+    gap: 0.5rem;
+  }
+  .phrase-submit {
+    padding-inline: 0.75rem;
+    gap: 0.6rem;
+  }
+}
+@media (max-width: 359px) and (orientation: portrait) {
+  .phrase-bank {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phrase-placed {
+    animation: none;
+  }
+}
+
+/* The occupied word keeps its full remove/drag target; listening is a separate touch row. */
+.phrase-slot > .phrase-speaker {
+  display: flex;
+  width: 100%;
+  margin-top: 0.25rem;
+  border: 1px solid #7b6070;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.phrase-pinyin {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}

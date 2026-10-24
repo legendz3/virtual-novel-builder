@@ -1,0 +1,164 @@
+node_modules/
+.vercel/
+dist/
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+output/playwright/
+coverage/
+.DS_Store
+*.tsbuildinfo
+supabase/.temp/
+supabase/.branches/
+
+# Version chapter reports and summaries; keep full browser captures local.
+production/chapter-*/implementation-evidence/*/
+production/chapter-*/qa-evidence/*/
+production/chapter-*/revisions/*/developer-browser/
+production/chapter-*/revisions/*/developer-final-browser/
+production/chapter-*/revisions/*/developer-reading-final/
+
+# Isolated vocabulary revision production builds.
+dist-vocabulary-shan-shan-v3/
+dist-minimax/
+
+# Isolated character recording revision build.
+dist-character-minimax/
+
+# Mandarin revision browser traces/screenshots stay local; version the JSON summaries.
+production/listening-repair/browser-results/
+production/listening-repair/qa-evidence/browser-console-check/
+production/listening-repair/qa-evidence/browser-independent/
+production/mandarin-contracts/dev-browser-results/
+production/mandarin-contracts/dev-browser-retry/
+production/mandarin-contracts/qa-contract-browser-results/
+production/mandarin-contracts/qa-regression-browser-results/
+production/mandarin-contracts/qa-listening-repair-browser-results/
+production/mandarin-contracts/qa-chapter-three-audio-results/
+
+# Chapter Seven full browser captures stay local; sibling logs and summaries are versioned.
+production/chapter-07/implementation/browser*/
+production/chapter-07/revisions/playtest-01/implementation/browser*/
+
+# Isolated Mandarin support placement production build.
+dist-review-placement/
+
+# Raw support-placement browser attachments; authored summaries remain versionable.
+production/mandarin-contracts/revisions/review-placement/browser-results/
+dist-review-placement-merge/
+
+# Chapter Seven current-main integration browser attachments stay local.
+production/chapter-07/revisions/main-integration-01/implementation/browser*/
+dist-spoken-audio-one-seven/
+
+production/mandarin-contracts/revisions/spoken-audio-one-seven/browser-results/
+
+
+# Local browser captures for the three-recording Professor Zhu voice revision.
+production/chapter-07/revisions/professor-zhu-voice-01/implementation/browser*/
+# Chapter Eight raw browser captures stay local; retain reports and curated review images.
+production/chapter-08/implementation/pw-*/
+production/chapter-08/revisions/*/implementation/pw-*/
+production/chapter-08/revisions/*/qa-evidence/pw-*/
+
+# Chapter Nine curated gallery: preserve exact links; raw captures stay local.
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/
+production/chapter-09/implementation-evidence/browser-chapter-nine-02/*
+!production/chapter-09/implementation-evidence/browser-smoke-01/
+production/chapter-09/implementation-evidence/browser-smoke-01/*
+!production/chapter-09/implementation-evidence/browser-white-frame-01/
+production/chapter-09/implementation-evidence/browser-white-frame-01/*
+!production/chapter-09/implementation-evidence/browser-white-frame-03/
+production/chapter-09/implementation-evidence/browser-white-frame-03/*
+!production/chapter-09/implementation-evidence/visual-review/
+production/chapter-09/implementation-evidence/visual-review/*
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-desktop-900/
+production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-desktop-900/*
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/
+production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/*
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-f-5e033-lp-preserve-shared-behavior-mobile/
+production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-f-5e033-lp-preserve-shared-behavior-mobile/*
+!production/chapter-09/implementation-evidence/browser-smoke-01/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/
+production/chapter-09/implementation-evidence/browser-smoke-01/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/*
+!production/chapter-09/implementation-evidence/browser-white-frame-01/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/
+production/chapter-09/implementation-evidence/browser-white-frame-01/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/*
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/
+production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/*
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/
+production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/*
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/
+production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/*
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/
+production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/*
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-desktop-900/ch9-monday-signup-200.png
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-desktop-900/ch9-monday-signup-204.png
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/ch9-monday-signup-234.png
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/ch9-private-work-618.png
+!production/chapter-09/implementation-evidence/browser-chapter-nine-02/chapterNine-Chapter-Nine-f-5e033-lp-preserve-shared-behavior-mobile/phrase-coaching.png
+!production/chapter-09/implementation-evidence/browser-smoke-01/chapterNine-Chapter-Nine-e-e3577-without-horizontal-overflow-mobile/ch9-sunset-memento-804.png
+!production/chapter-09/implementation-evidence/browser-white-frame-01/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/ch9-one-more-choice-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/ch9-another-look-866-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/ch9-memento-reaction-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/ch9-one-more-choice-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/ch9-one-more-photo-840-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-1080/ch9-sunset-memento-804-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/ch9-another-look-866-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/ch9-memento-reaction-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/ch9-one-more-choice-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/ch9-one-more-photo-840-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-768/ch9-sunset-memento-804-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/ch9-another-look-866-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/ch9-memento-reaction-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/ch9-one-more-choice-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/ch9-one-more-photo-840-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-desktop-900/ch9-sunset-memento-804-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/ch9-another-look-866-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/ch9-memento-reaction-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/ch9-one-more-choice-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/ch9-one-more-photo-840-framed.png
+!production/chapter-09/implementation-evidence/browser-white-frame-03/chapterNine-Chapter-Nine-f-4d989-n-exits-and-resumed-rewards-mobile/ch9-sunset-memento-804-framed.png
+!production/chapter-09/implementation-evidence/visual-review/desktop-1080-contact.jpg
+!production/chapter-09/implementation-evidence/visual-review/desktop-768-contact.jpg
+!production/chapter-09/implementation-evidence/visual-review/desktop-900-contact.jpg
+!production/chapter-09/implementation-evidence/visual-review/index.html
+!production/chapter-09/implementation-evidence/visual-review/mobile-contact.jpg
+!production/chapter-09/implementation-evidence/visual-review/screenshots.json
+
+# Chapter Nine independent QA reports remain versionable; nested browser captures stay local.
+!production/chapter-09/qa-evidence/*/
+production/chapter-09/qa-evidence/*/*
+!production/chapter-09/qa-evidence/*/*.json
+!production/chapter-09/qa-evidence/*/*.txt
+!production/chapter-09/qa-evidence/*/*.stderr
+
+# Chapter Nine readiness repair: sibling JSON reports stay versionable.
+production/chapter-09/revisions/qa-frame-readiness-01/browser*/
+
+# Final playtest raw traces stay local; sibling reports and curated copies are versionable.
+production/chapter-09/revisions/final-playtest-01/browser*/
+production/chapter-09/revisions/final-playtest-01/pinyin-persistent-01/browser*/
+production/chapter-09/revisions/final-playtest-01/pinyin-button-01/browser*/
+
+# Isolated Chapter Ten production build preserves occupied previews.
+dist-chapter10/
+
+# Chapter Ten raw browser runs remain local; reports and curated review images are versioned.
+production/chapter-10/**/browser-*/
+
+# Chapter Eleven local playtest screenshots; keep JSON summaries and baseline fixtures.
+production/chapter-11/revisions/playtest-01/implementation-evidence/screenshots/
+
+# Chapter Twelve raw browser captures stay local; reports, provenance and curated art remain versioned.
+production/chapter-12/**/browser-*/
+production/chapter-12/revisions/playtest-03/art/review-evidence/ui/
+production/chapter-12/revisions/*/qa-evidence/**/results/
+
+# Chapter Thirteen local browser traces/cache; exact production proof stays versioned.
+production/chapter-13/implementation-evidence/browser-*/
+production/chapter-13/director-evidence/asset-review-04/.vite/
+production/chapter-13/director-evidence/packed-table-review-01/.vite/
+
+# Local interactive browser session captures.
+.playwright-cli/

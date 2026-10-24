@@ -1,0 +1,22 @@
+/* Notes are silent learning support, including inside italic first-person narration. */
+.language-notes {
+  margin-block: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.language-notes p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+}
+.language-notes .language-notes-label {
+  font-size: 0.875rem;
+}
+.language-notes [lang="zh-Hans"] {
+  font-size: 1.125rem;
+}
+.language-note + .language-note {
+  margin-top: 0.6rem;
+}

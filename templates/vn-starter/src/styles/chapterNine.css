@@ -1,0 +1,142 @@
+/* Photograph inserts preserve their whole image; narrative controls remain shared. */
+.game-viewport[data-chapter="chapter-nine"] .scene-dialogue {
+  max-height: 42%;
+  overflow-y: auto;
+}
+.game-viewport[data-chapter="chapter-nine"] .scene-narration:has(.dialogue-text:empty) {
+  display: none;
+}
+.game-viewport[data-chapter="chapter-nine"] .story-print-collection {
+  width: 47%;
+}
+.game-viewport[data-chapter="chapter-nine"] .story-print-strip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.game-viewport[data-chapter="chapter-nine"][data-foreground="image"] .story-foreground {
+  left: 3%;
+  width: 47%;
+  height: 65%;
+}
+.game-viewport[data-chapter="chapter-nine"]:has(
+    .story-foreground:is(
+      [data-asset="kai-emma-sunset-memento-1"],
+      [data-asset="kai-emma-sunset-memento-2"]
+    )
+  )
+  .story-foreground {
+  /* Stage and photographs share 16:9. Auto height frames the actual pixels,
+     and 50% keeps clear space before controls start at 60%. */
+  box-sizing: border-box;
+  left: 50%;
+  top: 3%;
+  transform: translateX(-50%);
+  width: calc(50% - 16px);
+  max-width: 80%;
+  height: auto;
+  object-fit: contain;
+  border: 8px solid #fff;
+  padding: 0;
+  filter: none;
+  box-shadow: none;
+}
+.game-viewport[data-chapter="chapter-nine"]:has(
+    .story-foreground:is(
+      [data-asset="kai-emma-sunset-memento-1"],
+      [data-asset="kai-emma-sunset-memento-2"]
+    )
+  )
+  .story-decision {
+  top: 60%;
+  bottom: 3%;
+  max-height: 37%;
+}
+.game-viewport[data-chapter="chapter-nine"] .document-row p {
+  font-size: 1rem;
+}
+.game-viewport[data-chapter="chapter-nine"] .document-row p:first-child {
+  font-size: 1.2rem;
+}
+.game-viewport[data-chapter="chapter-nine"][data-view="chapter-end"] .chapter-end-panel {
+  inset: 5% 8%;
+  width: 84%;
+}
+.game-viewport[data-chapter="chapter-nine"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="document"] .story-document {
+    margin-top: 220px;
+  }
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="collection"]
+    .story-print-collection {
+    width: auto;
+  }
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="image"] {
+    overflow-y: auto;
+    padding-bottom: 6rem;
+  }
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="image"] .story-foreground {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 92%;
+    height: auto;
+    margin: 220px auto 1rem;
+  }
+  .game-viewport[data-chapter="chapter-nine"]:has(
+      .story-foreground:is(
+        [data-asset="kai-emma-sunset-memento-1"],
+        [data-asset="kai-emma-sunset-memento-2"]
+      )
+    )
+    .story-foreground {
+    position: relative;
+    inset: auto;
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+    height: auto;
+    transform: none;
+    border-width: 5px;
+    margin: 1rem auto;
+  }
+  /* Match the desktop selector's specificity so its 60% choice offset cannot
+     survive inside the phone's ordinary document flow. */
+  .game-viewport[data-chapter="chapter-nine"]:has(
+      .story-foreground:is(
+        [data-asset="kai-emma-sunset-memento-1"],
+        [data-asset="kai-emma-sunset-memento-2"]
+      )
+    )
+    .story-decision {
+    inset: auto;
+    max-height: none;
+  }
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="image"]
+    :is(.scene-dialogue, .story-decision, .scene-continue) {
+    position: relative;
+    inset: auto;
+    width: auto;
+    margin: 1rem;
+    max-height: none;
+  }
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="collection"] .scene-dialogue,
+  .game-viewport[data-chapter="chapter-nine"][data-foreground="document"] .scene-dialogue {
+    max-height: none;
+  }
+  .game-viewport[data-chapter="chapter-nine"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.game-viewport[data-chapter="chapter-nine"]:has(
+    .story-foreground:is(
+      [data-asset="kai-emma-sunset-memento-1"],
+      [data-asset="kai-emma-sunset-memento-2"]
+    )
+  )
+  .phaser-host {
+  filter: brightness(0.5);
+}

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "emma-exchange-student-answer",
+    "path": "/assets/audio/dialogue/minimax/emma/emma-exchange-student-answer.mp3",
+    "spokenText": "我是美国来的交换生。",
+    "speakerId": "emma",
+    "voiceId": "English_witty_female_1",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "d9837d2ebb344830993fc424042ad424ed8a2b2be1d2f1ad306ebcbf0dfb7e22",
+      "sources": [
+        "/assets/audio/dialogue/minimax/emma/emma-exchange-student-answer.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "li-wei-not-bad",
+    "path": "/assets/audio/dialogue/minimax/li-wei/li-wei-not-bad.mp3",
+    "spokenText": "不错。",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "c5b5a810ecb4b4132ce68aac5b34a903b806823a9eb7406641a0eb99d22e20df",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/li-wei-not-bad.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "emma-thank-you",
+    "path": "/assets/audio/dialogue/minimax/emma/emma-thank-you.mp3",
+    "spokenText": "谢谢。",
+    "speakerId": "emma",
+    "voiceId": "English_witty_female_1",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "a1a9da25e54ef9625d8593b81c5f2825bf3b66aae35d74bb062a92c961b3ef9f",
+      "sources": [
+        "/assets/audio/dialogue/minimax/emma/emma-thank-you.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "li-wei-okay",
+    "path": "/assets/audio/dialogue/minimax/li-wei/li-wei-okay.mp3",
+    "spokenText": "好。",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "5f34273220aedc8dd17a2a98311e7d417e8433062a0250237d6bf5b2d6a36cf2",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/li-wei-okay.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "li-wei-name",
+    "path": "/assets/audio/dialogue/minimax/li-wei/li-wei-name.mp3",
+    "spokenText": "李维。",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "1d2a7c97e3b6a05efe28a95b91a0376a0ac54094cd056411d95452ead9d98ad7",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/li-wei-name.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "emma-one-year",
+    "path": "/assets/audio/dialogue/minimax/emma/emma-one-year.mp3",
+    "spokenText": "一年。",
+    "speakerId": "emma",
+    "voiceId": "English_witty_female_1",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "b1e62e1f9246178245e3e56e0cc20aa5ba44df71823c0fbd558658c426b5f7a6",
+      "sources": [
+        "/assets/audio/dialogue/minimax/emma/emma-one-year.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "mind-your-luggage",
+    "path": "/assets/audio/dialogue/minimax/announcement/mind-your-luggage.mp3",
+    "spokenText": "请注意您的行李……",
+    "speakerId": "announcement",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "6a0936661342cb12a994922952a816027e631968710a27b6bda167606ec6dc4f",
+      "sources": [
+        "/assets/audio/dialogue/minimax/announcement/mind-your-luggage.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "exchange-student-question",
+    "path": "/assets/audio/dialogue/minimax/li-wei/exchange-student-question.mp3",
+    "spokenText": "你是美国来的交换生吗？",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "7aabeead2cd25e54f0a70da2275134519b701ab081a4808a1dd3a430993fa24d",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/exchange-student-question.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "vocabulary-beijing",
+    "path": "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-beijing.mp3",
+    "spokenText": "北京",
+    "speakerId": "vocabulary-narrator",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "c1496eb2bc6d56c4c6ac6d41c60a684bebaf1337cf9c673f108404fc7d3e248f",
+      "sources": [
+        "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-beijing.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "vocabulary-jiaohuansheng",
+    "path": "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-jiaohuansheng.mp3",
+    "spokenText": "交换生",
+    "speakerId": "vocabulary-narrator",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "30390cb81af33453dc1637cc2e3231f104db6ab184bb77fe9880ff4c336b13b0",
+      "sources": [
+        "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-jiaohuansheng.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "vocabulary-meiguo",
+    "path": "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-meiguo.mp3",
+    "spokenText": "美国",
+    "speakerId": "vocabulary-narrator",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "fe06ed9e82fe2ea0d0e6ee94a65972f8df3841094f12864a60428bdf4f90c5dc",
+      "sources": [
+        "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-meiguo.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "vocabulary-ziji",
+    "path": "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-ziji.mp3",
+    "spokenText": "自己",
+    "speakerId": "vocabulary-narrator",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "05142b8f1032aa1edf62706bc0e9d353ffd8dc5ef5201aaee2ec81c32dadd262",
+      "sources": [
+        "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-ziji.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "vocabulary-kan-lu",
+    "path": "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-kan-lu.mp3",
+    "spokenText": "看路",
+    "speakerId": "vocabulary-narrator",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "dadc606bb3950708d1878ba58a65fb8b3342db55b3079d4be1821318e8df4d31",
+      "sources": [
+        "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-kan-lu.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "vocabulary-bucuo",
+    "path": "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-bucuo.mp3",
+    "spokenText": "不错",
+    "speakerId": "vocabulary-narrator",
+    "voiceId": "Chinese_wenrounvxing",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "3b254d523a2fb74bdd120b8bc1982bfdd183a542cbe7110089cd7385e61584e4",
+      "sources": [
+        "/assets/audio/vocabulary/vocabulary-narrator/minimax/vocabulary-bucuo.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "emma-refuse-help",
+    "path": "/assets/audio/dialogue/minimax/emma/spoken-audio-one-seven/emma-refuse-help.mp3",
+    "spokenText": "不用，谢谢。我自己来。",
+    "speakerId": "emma",
+    "voiceId": "English_witty_female_1",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "41f933fc0c2d5bb408937639570f5466ae0fce9de39cb56253378072a46f602e",
+      "sources": [
+        "/assets/audio/dialogue/minimax/emma/spoken-audio-one-seven/emma-refuse-help.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "li-wei-do-it-yourself",
+    "path": "/assets/audio/dialogue/minimax/li-wei/spoken-audio-one-seven/li-wei-do-it-yourself.mp3",
+    "spokenText": "自己来。",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "93b33fa9abf79763b2357f3efbbc0288842e636492d933fbc5034c2609d28551",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/spoken-audio-one-seven/li-wei-do-it-yourself.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "li-wei-watch-road",
+    "path": "/assets/audio/dialogue/minimax/li-wei/spoken-audio-one-seven/li-wei-watch-road.mp3",
+    "spokenText": "看路。",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "81baf1d1418465483a44be98bc73142f26569c6e4b5881a64d26a9095f0edc23",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/spoken-audio-one-seven/li-wei-watch-road.mp3"
+      ]
+    },
+    "allowedUsages": null
+  },
+  {
+    "id": "li-wei-one-year-question",
+    "path": "/assets/audio/dialogue/minimax/li-wei/spoken-audio-one-seven/li-wei-one-year-question.mp3",
+    "spokenText": "一年？",
+    "speakerId": "li-wei",
+    "voiceId": "Chinese (Mandarin)_Unrestrained_Young_Man",
+    "provenance": {
+      "kind": "retained",
+      "sha256": "2d0e39df4dd1f83d569fc05a81a3ee30a3a1748d81a126cb92cb427d8c2e204c",
+      "sources": [
+        "/assets/audio/dialogue/minimax/li-wei/spoken-audio-one-seven/li-wei-one-year-question.mp3"
+      ]
+    },
+    "allowedUsages": null
+  }
+]

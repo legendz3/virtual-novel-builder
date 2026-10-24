@@ -1,0 +1,31 @@
+/* Long authored paragraphs scroll without covering the chapter's Continue control. */
+.game-viewport[data-chapter="chapter-seven"]:not([data-phone]):not([data-foreground="document"])
+  .scene-dialogue {
+  max-height: 48%;
+  overflow-y: auto;
+}
+/* Document and outgoing-phone beats intentionally have no narration panel. */
+.game-viewport[data-chapter="chapter-seven"] .scene-narration:has(.dialogue-text:empty) {
+  display: none;
+}
+.game-viewport[data-chapter="chapter-seven"][data-view="chapter-end"] .chapter-end-panel {
+  inset: 5% 8%;
+  width: 84%;
+}
+.game-viewport[data-chapter="chapter-seven"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-seven"][data-foreground="document"] .story-document {
+    margin-top: 220px;
+  }
+  .game-viewport[data-chapter="chapter-seven"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .game-viewport[data-chapter="chapter-seven"][data-view="chapter-end"] .chapter-end-panel {
+    inset: 5% 6%;
+    width: 88%;
+  }
+}

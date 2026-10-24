@@ -1,0 +1,58 @@
+.game-viewport[data-chapter="chapter-four"][data-view="chapter-end"] .chapter-end-panel {
+  left: 12%;
+  width: 76%;
+  top: 6%;
+  bottom: 6%;
+}
+.game-viewport[data-chapter="chapter-four"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-four"][data-framing="dinner-across"] .phaser-host {
+    width: 200%;
+    left: -50%;
+  }
+  .game-viewport[data-chapter="chapter-four"][data-framing="dinner-adjacent"] .phaser-host {
+    width: 200%;
+    left: -100%;
+  }
+  .game-viewport[data-chapter="chapter-four"][data-framing="dinner-standing"] .phaser-host {
+    width: 200%;
+    left: -100%;
+  }
+  .game-viewport[data-chapter="chapter-four"][data-framing="dinner-seated-full"] .phaser-host {
+    width: 200%;
+    left: -50%;
+  }
+  .game-viewport[data-chapter="chapter-four"][data-framing="restaurant-counter"] .phaser-host {
+    width: 200%;
+    left: -9.375%;
+  }
+  /* The reaching arm ends at the original PNG edge; keep that edge at the viewport boundary. */
+  .game-viewport[data-chapter="chapter-four"][data-framing="close-up"] .phaser-host {
+    width: 200%;
+    left: 0;
+  }
+  .game-viewport[data-chapter="chapter-four"][data-background="li-wei-dorm-unanswered"]
+    .phaser-host {
+    width: 200%;
+    left: -50%;
+  }
+  .game-viewport[data-chapter="chapter-four"] .story-decision {
+    top: 29%;
+    bottom: 4%;
+    height: auto;
+    max-height: none;
+  }
+  .game-viewport[data-chapter="chapter-four"][data-view="chapter-end"] .chapter-end-panel {
+    left: 6%;
+    width: 88%;
+    top: 5%;
+    bottom: 5%;
+  }
+  .game-viewport[data-chapter="chapter-four"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

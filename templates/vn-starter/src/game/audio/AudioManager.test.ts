@@ -1,0 +1,52 @@
+import { expect, it, vi } from "vitest";
+import { AudioManager } from "./AudioManager";
+it("AudioManager loops music independently of landing SFX and releases all channels", async () => {
+  const channels: HTMLAudioElement[] = [];
+  const manager = new AudioManager((url) => {
+    const audio = document.createElement("audio");
+    audio.src = url;
+    vi.spyOn(audio, "play").mockResolvedValue();
+    vi.spyOn(audio, "pause").mockImplementation(() => {});
+    vi.spyOn(audio, "load").mockImplementation(() => {});
+    channels.push(audio);
+    return audio;
+  });
+  manager.setMusicVolume(0.25);
+  await manager.playMusic("hope.mp3");
+  await manager.playSfx("landing.mp3");
+  expect(channels[0]?.loop).toBe(true);
+  expect(channels[0]?.volume).toBe(0.25);
+  expect(channels[1]?.loop).toBe(false);
+  manager.setMuted(true);
+  expect(channels.every((audio) => audio.muted)).toBe(true);
+  manager.pauseAll();
+  await manager.resumeAll();
+  expect(channels[0]?.play).toHaveBeenCalledTimes(2);
+  manager.stopSfx();
+  expect(channels[1]?.hasAttribute("src")).toBe(false);
+  expect(channels[0]?.hasAttribute("src")).toBe(true);
+  await manager.playSfx("second.mp3");
+  expect(channels[2]?.muted).toBe(true);
+  manager.stopAll();
+  expect(channels.every((audio) => !audio.hasAttribute("src"))).toBe(true);
+});
+it("AudioManager supports slow voice playback, volume and stop", async () => {
+  const audio = document.createElement("audio");
+  vi.spyOn(audio, "play").mockResolvedValue();
+  vi.spyOn(audio, "pause").mockImplementation(() => {});
+  vi.spyOn(audio, "load").mockImplementation(() => {});
+  const manager = new AudioManager(() => audio);
+  await manager.playVoice("test.wav", { playbackRate: 0.75 });
+  expect(audio.playbackRate).toBe(0.75);
+  manager.setVoiceVolume(0.4);
+  expect(audio.volume).toBe(0.4);
+  manager.pauseVoice();
+  manager.resumeVoice();
+  manager.stopVoice();
+  expect(audio.pause).toHaveBeenCalled();
+});
+it("AudioManager surfaces autoplay rejection for an accessible retry", async () => {
+  const audio = document.createElement("audio");
+  vi.spyOn(audio, "play").mockRejectedValue(new DOMException("blocked", "NotAllowedError"));
+  await expect(new AudioManager(() => audio).playVoice("test.wav")).rejects.toThrow("blocked");
+});

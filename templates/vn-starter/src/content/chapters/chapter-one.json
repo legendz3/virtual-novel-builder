@@ -1,0 +1,2243 @@
+{
+  "id": "chapter-one",
+  "label": "Chapter one",
+  "sceneId": "arrival",
+  "musicId": "hope",
+  "events": [
+    {
+      "id": "touchdown",
+      "type": "pause",
+      "durationMs": 3600,
+      "text": "The rumble of airplane wheels hitting pavement.",
+      "sfxId": "airplane-landing",
+      "presentation": {
+        "view": "dark"
+      }
+    },
+    {
+      "id": "captain-welcome",
+      "type": "dialogue",
+      "characterId": "CAPTAIN",
+      "text": "Welcome to Beijing. The local time is 3:42 p.m.",
+      "presentation": {
+        "view": "dark"
+      }
+    },
+    {
+      "id": "eyes-open",
+      "type": "narration",
+      "text": "Emma opens her eyes.",
+      "presentation": {
+        "view": "window",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "airport-window",
+      "type": "narration",
+      "text": "Outside the window is a washed-out gray-blue sky. Rows of aircraft disappear into the haze beyond Beijing Capital International Airport.",
+      "presentation": {
+        "view": "window",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "low-battery",
+      "type": "narration",
+      "text": "2% battery.",
+      "presentation": {
+        "view": "phone",
+        "backgroundId": "arrival-phone"
+      }
+    },
+    {
+      "id": "mom-landed",
+      "type": "phone_message",
+      "senderId": "Mom",
+      "text": "LANDED???",
+      "presentation": {
+        "view": "phone",
+        "backgroundId": "arrival-phone"
+      }
+    },
+    {
+      "id": "mom-wechat",
+      "type": "phone_message",
+      "senderId": "Mom",
+      "text": "Remember WeChat doesn't work like regular texting right?",
+      "presentation": {
+        "view": "phone",
+        "backgroundId": "arrival-phone"
+      }
+    },
+    {
+      "id": "mom-vpn",
+      "type": "phone_message",
+      "senderId": "Mom",
+      "text": "Do you have VPN??",
+      "presentation": {
+        "view": "phone",
+        "backgroundId": "arrival-phone"
+      }
+    },
+    {
+      "id": "mom-emma",
+      "type": "phone_message",
+      "senderId": "Mom",
+      "text": "Emma??",
+      "presentation": {
+        "view": "phone",
+        "backgroundId": "arrival-phone"
+      }
+    },
+    {
+      "id": "phone-locked",
+      "type": "narration",
+      "text": "Emma locks the phone.",
+      "presentation": {
+        "view": "window",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "one-year",
+      "type": "dialogue",
+      "characterId": "EMMA",
+      "text": "One year. I wanted this.",
+      "presentation": {
+        "view": "window",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "hesitation",
+      "type": "pause",
+      "durationMs": 1300,
+      "presentation": {
+        "view": "window",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "why-beijing",
+      "type": "dialogue",
+      "characterId": "EMMA",
+      "text": "...Why did I want this?",
+      "presentation": {
+        "view": "window",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "title-reveal",
+      "type": "title",
+      "title": "北京心动",
+      "subtitle": "BEIJING HEARTBEAT",
+      "assetId": "beijing-heartbeat-title",
+      "presentation": {
+        "view": "title",
+        "backgroundId": "beijing-airport"
+      }
+    },
+    {
+      "id": "arrival-hall-two-hours",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals"
+      },
+      "text": "Two hours later, Emma is standing in the arrival hall with a suitcase that has developed a broken wheel."
+    },
+    {
+      "id": "arrival-hall-crowds",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals"
+      },
+      "text": "Hundreds of people stream around her."
+    },
+    {
+      "id": "arrival-hall-signs",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals"
+      },
+      "text": "Signs.\n\nChinese everywhere."
+    },
+    {
+      "id": "arrival-hall-announcements",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals"
+      },
+      "text": "Announcements she recognizes individually but cannot process quickly enough."
+    },
+    {
+      "id": "luggage-announcement",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals"
+      },
+      "text": "请注意您的行李……",
+      "characterId": "ANNOUNCEMENT",
+      "audioId": "mind-your-luggage",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "announcement",
+        "segments": [
+          {
+            "hanzi": "请注意您的行李……",
+            "pinyin": "Qǐng zhùyì nín de xíngli…",
+            "meaning": "Please keep an eye on your luggage…"
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "mind-your-luggage"
+        }
+      }
+    },
+    {
+      "id": "luggage-fragments",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals"
+      },
+      "text": "请注意……行李……",
+      "translation": "Please... something... luggage."
+    },
+    {
+      "id": "emily-reed-sign",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "Then she notices a handwritten sign.\n\nEMILY REED"
+    },
+    {
+      "id": "sign-holder",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "A Chinese guy about her age is holding it.\n\nTall. Black T-shirt. Backpack over one shoulder. Expression suggesting he'd rather be almost anywhere else."
+    },
+    {
+      "id": "emma-approaches",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "Emma approaches."
+    },
+    {
+      "id": "not-emily",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "Hi. I'm not Emily.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "checks-sign",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-looking-at-sign"
+        }
+      },
+      "text": "He looks down at his sign."
+    },
+    {
+      "id": "looks-at-emma",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "Then at her."
+    },
+    {
+      "id": "you-arent",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "You aren't?",
+      "characterId": "GUY"
+    },
+    {
+      "id": "emma-name",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "Emma.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "checks-sign-again",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-looking-at-sign"
+        }
+      },
+      "text": "He looks at the sign again."
+    },
+    {
+      "id": "told-emily",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-looking-at-sign"
+        }
+      },
+      "text": "They told me Emily.",
+      "characterId": "GUY"
+    },
+    {
+      "id": "devastating",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "Well, this is devastating for both of us.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "barely-smiles",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-holding-sign"
+        }
+      },
+      "text": "For the first time, the corner of his mouth moves.\n\nBarely."
+    },
+    {
+      "id": "switches-mandarin",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Then he switches into Mandarin."
+    },
+    {
+      "id": "exchange-student-question",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "你是美国来的交换生吗？",
+      "characterId": "GUY",
+      "pinyin": "Nǐ shì Měiguó lái de jiāohuànshēng ma?",
+      "audioId": "exchange-student-question",
+      "mandarin": {
+        "mode": "meaning-hidden",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "你是美国来的交换生吗？",
+            "pinyin": "Nǐ shì Měiguó lái de jiāohuànshēng ma?",
+            "meaning": "Are you the exchange student from America?"
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "exchange-student-question"
+        },
+        "reveal": {
+          "eventIds": [
+            "exchange-student-answer",
+            "interesting"
+          ],
+          "purpose": "Reveal the complete question with the immediate correct response; both wrong answers retain the authored fully supported Interesting correction before the suitcase merge."
+        }
+      }
+    },
+    {
+      "id": "exchange-student-check",
+      "sceneId": "arrival-hall",
+      "type": "comprehension",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "exercise": {
+        "id": "exchange-student-meaning",
+        "type": "meaning_choice",
+        "question": "你是美国来的交换生吗？",
+        "pinyin": "Nǐ shì Měiguó lái de jiāohuànshēng ma?",
+        "prompt": "What did he ask?",
+        "options": [
+          {
+            "id": "A",
+            "text": "Are you the exchange student from America?"
+          },
+          {
+            "id": "B",
+            "text": "Did your luggage come from America?"
+          },
+          {
+            "id": "C",
+            "text": "Are you looking for an American student?"
+          }
+        ],
+        "correctOptionId": "A",
+        "audioId": "exchange-student-question"
+      },
+      "correctEventId": "exchange-student-answer",
+      "incorrectEventId": "amused-look"
+    },
+    {
+      "id": "exchange-student-answer",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "我是美国来的交换生。",
+      "characterId": "EMMA",
+      "pinyin": "Wǒ shì Měiguó lái de jiāohuànshēng.",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "emma",
+        "segments": [
+          {
+            "hanzi": "我是美国来的交换生。",
+            "pinyin": "Wǒ shì Měiguó lái de jiāohuànshēng.",
+            "meaning": "I'm the exchange student from America."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "emma-exchange-student-answer"
+        }
+      },
+      "mandarinSupport": {
+        "kind": "question-context",
+        "sourceEventId": "exchange-student-question",
+        "placement": {
+          "kind": "resolved-answer",
+          "assessmentEventId": "exchange-student-check",
+          "outcome": "correct"
+        },
+        "purpose": "The immediate correct answer says I am the exchange student. Show what Li Wei asked as question context here, never below his later I was."
+      }
+    },
+    {
+      "id": "eyebrows-rise",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "His eyebrows rise."
+    },
+    {
+      "id": "not-bad",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "不错。",
+      "characterId": "GUY",
+      "pinyin": "Bùcuò.",
+      "mandarin": {
+        "mode": "meaning-hidden",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "不错。",
+            "pinyin": "Bùcuò.",
+            "meaning": "Not bad."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-not-bad"
+        },
+        "reveal": {
+          "eventIds": [
+            "emma-knows"
+          ],
+          "purpose": "Preserve the short recognition beat before its meaning."
+        }
+      }
+    },
+    {
+      "id": "emma-knows",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Emma knows that one.\n\nNot bad.",
+      "mandarinSupport": {
+        "kind": "natural-meaning",
+        "sourceEventId": "not-bad",
+        "english": {
+          "field": "text",
+          "exactSpan": "Not bad."
+        },
+        "placement": {
+          "kind": "recognition",
+          "interveningEventIds": []
+        },
+        "purpose": "Immediate exact English meaning in Emma’s recognition narration; repeating it in a panel adds nothing."
+      }
+    },
+    {
+      "id": "sound-surprised",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "You sound surprised.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "was-surprised",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "I was.",
+      "characterId": "GUY",
+      "nextEventId": "reaches-suitcase"
+    },
+    {
+      "id": "amused-look",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "He gives her an amused look."
+    },
+    {
+      "id": "two-years-chinese",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Your university said you studied Chinese for two years.",
+      "characterId": "GUY"
+    },
+    {
+      "id": "i-did",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "I did.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "interesting",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Interesting.\n\n你是美国来的交换生吗？",
+      "characterId": "GUY",
+      "pinyin": "Nǐ shì Měiguó lái de jiāohuànshēng ma?",
+      "translation": "Are you the exchange student from America?",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "segments",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "你是美国来的交换生吗？",
+            "pinyin": "Nǐ shì Měiguó lái de jiāohuànshēng ma?",
+            "meaning": "Are you the exchange student from America?"
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "exchange-student-question",
+          "spokenText": "你是美国来的交换生吗？"
+        }
+      }
+    },
+    {
+      "id": "interesting-tone",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "I don't like the way you said \"interesting.\"",
+      "characterId": "EMMA",
+      "nextEventId": "reaches-suitcase"
+    },
+    {
+      "id": "reaches-suitcase",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "He reaches for her suitcase."
+    },
+    {
+      "id": "suitcase-choice",
+      "sceneId": "arrival-hall",
+      "type": "choice",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "prompt": "He reaches for her suitcase.",
+      "options": [
+        {
+          "id": "accept",
+          "text": "Take his help.",
+          "quote": "谢谢。",
+          "targetEventId": "accept-thanks",
+          "effects": [
+            {
+              "type": "relationship",
+              "key": "LiWei_Affection",
+              "delta": 1
+            }
+          ]
+        },
+        {
+          "id": "refuse",
+          "text": "Refuse politely in Chinese.",
+          "quote": "不用，谢谢。我自己来。",
+          "pinyin": "Bú yòng, xièxie. Wǒ zìjǐ lái.",
+          "translation": "No thanks. I'll do it myself.",
+          "targetEventId": "refuse-chinese",
+          "effects": [
+            {
+              "type": "stat",
+              "key": "Mandarin",
+              "delta": 1
+            },
+            {
+              "type": "stat",
+              "key": "Independence",
+              "delta": 1
+            },
+            {
+              "type": "relationship",
+              "key": "LiWei_Rivalry",
+              "delta": 1
+            },
+            {
+              "type": "relationship",
+              "key": "LiWei_Trust",
+              "delta": 1
+            }
+          ]
+        },
+        {
+          "id": "tease",
+          "text": "Tease him.",
+          "quote": "Maybe Emily would let you carry it.",
+          "targetEventId": "tease-emily",
+          "effects": [
+            {
+              "type": "relationship",
+              "key": "LiWei_Affection",
+              "delta": 1
+            },
+            {
+              "type": "relationship",
+              "key": "LiWei_Rivalry",
+              "delta": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accept-thanks",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "谢谢。",
+      "characterId": "EMMA",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "emma",
+        "segments": [
+          {
+            "hanzi": "谢谢。",
+            "pinyin": "Xièxie.",
+            "meaning": "Thank you."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "emma-thank-you"
+        }
+      }
+    },
+    {
+      "id": "accept-suitcase",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "He takes the suitcase without making a big deal about it.",
+      "nextEventId": "outside-beijing"
+    },
+    {
+      "id": "refuse-chinese",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "不用，谢谢。我自己来。",
+      "characterId": "EMMA",
+      "pinyin": "Bú yòng, xièxie. Wǒ zìjǐ lái.",
+      "translation": "No thanks. I'll do it myself.",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "emma",
+        "segments": [
+          {
+            "hanzi": "不用，谢谢。我自己来。",
+            "pinyin": "Bú yòng, xièxie. Wǒ zìjǐ lái.",
+            "meaning": "No thanks. I'll do it myself."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "emma-refuse-help"
+        }
+      }
+    },
+    {
+      "id": "lets-go-suitcase",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "He lets go immediately."
+    },
+    {
+      "id": "okay",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "好。",
+      "characterId": "GUY",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "好。",
+            "pinyin": "Hǎo.",
+            "meaning": "Okay."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-okay"
+        }
+      }
+    },
+    {
+      "id": "broken-wheel-jams",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Three steps later the broken wheel jams."
+    },
+    {
+      "id": "walks-past",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "He walks past Emma."
+    },
+    {
+      "id": "do-it-yourself",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "自己来。",
+      "characterId": "GUY",
+      "translation": "Do it yourself.",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "自己来。",
+            "pinyin": "Zìjǐ lái.",
+            "meaning": "Do it yourself."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-do-it-yourself"
+        }
+      }
+    },
+    {
+      "id": "emma-glares",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Emma glares at him.",
+      "nextEventId": "outside-beijing"
+    },
+    {
+      "id": "tease-emily",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "Maybe Emily would let you carry it.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "takes-suitcase",
+      "sceneId": "arrival-hall",
+      "type": "narration",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "He looks at her.\n\nThen takes the suitcase."
+    },
+    {
+      "id": "likes-emily",
+      "sceneId": "arrival-hall",
+      "type": "dialogue",
+      "presentation": {
+        "view": "hall",
+        "musicVolume": 0.12,
+        "backgroundId": "arrival-hall",
+        "ambienceId": "airport-arrivals",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        }
+      },
+      "text": "I already like Emily better.",
+      "characterId": "GUY",
+      "nextEventId": "outside-beijing"
+    },
+    {
+      "id": "outside-beijing",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-curbside"
+      },
+      "text": "Outside, Beijing hits her all at once."
+    },
+    {
+      "id": "cars-humidity",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-curbside"
+      },
+      "text": "Cars.\n\nHumidity."
+    },
+    {
+      "id": "scooters",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-curbside"
+      },
+      "text": "Scooters sliding through spaces that don't look large enough to accommodate scooters."
+    },
+    {
+      "id": "hesitates-crossing",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "Emma hesitates before crossing.\n\nThe guy walks directly into traffic."
+    },
+    {
+      "id": "crossing-here",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "Are we seriously crossing here?",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "crossing-yes",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "Yes.",
+      "characterId": "GUY"
+    },
+    {
+      "id": "there-are-cars",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "There are cars.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "very-observant",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "Very observant.",
+      "characterId": "GUY"
+    },
+    {
+      "id": "scooter-passes",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "A scooter whips past."
+    },
+    {
+      "id": "catches-forearm",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.25,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk",
+        "crossingMotion": {
+          "shot": "catch",
+          "durationMs": 2400
+        },
+        "musicId": "dramatic-boi"
+      },
+      "text": "He casually reaches backward and catches Emma's forearm before she steps into its path."
+    },
+    {
+      "id": "very-close",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.25,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk",
+        "crossingMotion": {
+          "shot": "close",
+          "durationMs": 0
+        },
+        "musicId": "dramatic-boi"
+      },
+      "text": "For half a second they're very close."
+    },
+    {
+      "id": "warm-hand",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.25,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk",
+        "crossingMotion": {
+          "shot": "close",
+          "durationMs": 0
+        },
+        "musicId": "dramatic-boi"
+      },
+      "text": "His hand is warm."
+    },
+    {
+      "id": "notices-hand",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.25,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk",
+        "crossingMotion": {
+          "shot": "close",
+          "durationMs": 0
+        },
+        "musicId": "dramatic-boi"
+      },
+      "text": "Emma looks at it.\n\nHe notices."
+    },
+    {
+      "id": "releases-hand",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk",
+        "crossingMotion": {
+          "shot": "release",
+          "durationMs": 1400
+        }
+      },
+      "text": "He lets go."
+    },
+    {
+      "id": "watch-the-road",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "看路。",
+      "characterId": "GUY",
+      "pinyin": "Kàn lù.",
+      "translation": "Watch the road.",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "看路。",
+            "pinyin": "Kàn lù.",
+            "meaning": "Watch the road."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-watch-road"
+        }
+      }
+    },
+    {
+      "id": "be-careful",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "You could say \"be careful.\"",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "i-could",
+      "sceneId": "airport-crossing",
+      "type": "dialogue",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "I could.",
+      "characterId": "GUY"
+    },
+    {
+      "id": "keeps-walking",
+      "sceneId": "airport-crossing",
+      "type": "narration",
+      "presentation": {
+        "view": "street",
+        "musicVolume": 0.15,
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets"
+        },
+        "backgroundId": "airport-crosswalk"
+      },
+      "text": "He keeps walking.",
+      "nextEventId": "airport-express-train"
+    },
+    {
+      "id": "airport-express-train",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train"
+      },
+      "text": "On the airport express train she finally asks:"
+    },
+    {
+      "id": "asks-his-name",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "What's your name?",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "li-wei-chinese-name",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "李维。",
+      "characterId": "GUY",
+      "mandarin": {
+        "mode": "meaning-hidden",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "李维。",
+            "pinyin": "Lǐ Wéi.",
+            "meaning": "Li Wei."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-name"
+        },
+        "reveal": {
+          "eventIds": [
+            "li-wei-name"
+          ],
+          "purpose": "Preserve Emma blinking before the romanized name."
+        }
+      }
+    },
+    {
+      "id": "emma-blinks",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Emma blinks."
+    },
+    {
+      "id": "li-wei-name",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Li Wei.",
+      "characterId": "LI WEI",
+      "mandarinSupport": {
+        "kind": "natural-meaning",
+        "sourceEventId": "li-wei-chinese-name",
+        "english": {
+          "field": "text",
+          "exactSpan": "Li Wei."
+        },
+        "placement": {
+          "kind": "recognition",
+          "interveningEventIds": [
+            "emma-blinks"
+          ]
+        },
+        "purpose": "Exact romanized name on the deliberately following name beat, after Emma blinks."
+      }
+    },
+    {
+      "id": "emma-introduction",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "I'm Emma.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "not-emily-established",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Yes. We've established you aren't Emily.",
+      "characterId": "LI WEI"
+    },
+    {
+      "id": "how-long-chinese",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "How long have you studied Chinese?",
+      "characterId": "LI WEI"
+    },
+    {
+      "id": "two-years",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Two years.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "never-been-china",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "And you've never been to China?",
+      "characterId": "LI WEI"
+    },
+    {
+      "id": "never-before",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "No.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "studied-chinese",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Then you studied Chinese.",
+      "characterId": "LI WEI"
+    },
+    {
+      "id": "train-window-look",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "He looks out the window."
+    },
+    {
+      "id": "not-learned-yet",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "You haven't learned it yet.",
+      "characterId": "LI WEI"
+    },
+    {
+      "id": "irritated-emma",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "That irritates her more than it should."
+    },
+    {
+      "id": "train-challenge-choice",
+      "sceneId": "airport-express",
+      "type": "choice",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "prompt": "You haven't learned it yet.",
+      "options": [
+        {
+          "id": "fluent",
+          "text": "I'll be fluent by the time I leave.",
+          "targetEventId": "fluent-promise",
+          "effects": [
+            {
+              "type": "stat",
+              "key": "Confidence",
+              "delta": 1
+            },
+            {
+              "type": "relationship",
+              "key": "LiWei_Rivalry",
+              "delta": 2
+            }
+          ]
+        },
+        {
+          "id": "teach-me",
+          "text": "Maybe you can teach me.",
+          "targetEventId": "teach-me-request",
+          "effects": [
+            {
+              "type": "relationship",
+              "key": "LiWei_Affection",
+              "delta": 2
+            }
+          ]
+        },
+        {
+          "id": "prove-it",
+          "text": "I know more than you think.",
+          "targetEventId": "more-than-you-think",
+          "effects": [
+            {
+              "type": "relationship",
+              "key": "LiWei_Rivalry",
+              "delta": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fluent-promise",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "I'll be fluent by the time I leave.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "turns-toward-emma",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Li Wei turns toward her."
+    },
+    {
+      "id": "one-year-question",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "一年？",
+      "characterId": "LI WEI",
+      "translation": "One year?",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "一年？",
+            "pinyin": "Yì nián?",
+            "meaning": "One year?"
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-one-year-question"
+        }
+      }
+    },
+    {
+      "id": "one-year-answer",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "一年。",
+      "characterId": "EMMA",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "emma",
+        "segments": [
+          {
+            "hanzi": "一年。",
+            "pinyin": "Yì nián.",
+            "meaning": "One year."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "emma-one-year"
+        }
+      }
+    },
+    {
+      "id": "tiny-smile",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "A tiny smile."
+    },
+    {
+      "id": "challenge-good",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "好。",
+      "characterId": "LI WEI",
+      "translation": "Good.",
+      "mandarin": {
+        "mode": "supported",
+        "layout": "block",
+        "speakerId": "li-wei",
+        "segments": [
+          {
+            "hanzi": "好。",
+            "pinyin": "Hǎo.",
+            "meaning": "Good."
+          }
+        ],
+        "speech": {
+          "mode": "recorded",
+          "audioId": "li-wei-okay"
+        }
+      }
+    },
+    {
+      "id": "sounds-like-challenge",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "It sounds strangely like a challenge.",
+      "nextEventId": "beijing-skyline"
+    },
+    {
+      "id": "teach-me-request",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Maybe you can teach me.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "meets-her-eyes",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "He meets her eyes."
+    },
+    {
+      "id": "maybe-teach",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Maybe.",
+      "characterId": "LI WEI"
+    },
+    {
+      "id": "lingering-look",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "A fraction too long before he looks away.",
+      "nextEventId": "beijing-skyline"
+    },
+    {
+      "id": "more-than-you-think",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "I know more than you think.",
+      "characterId": "EMMA"
+    },
+    {
+      "id": "prove-it",
+      "sceneId": "airport-express",
+      "type": "dialogue",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train",
+        "character": {
+          "id": "li-wei",
+          "assetId": "li-wei-hands-in-pockets",
+          "framing": "waist-up"
+        }
+      },
+      "text": "Then prove it.",
+      "characterId": "LI WEI",
+      "nextEventId": "beijing-skyline"
+    },
+    {
+      "id": "beijing-skyline",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train"
+      },
+      "text": "The Beijing skyline passes beyond the train window."
+    },
+    {
+      "id": "unfamiliar-city",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "airport-express",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train"
+      },
+      "text": "Emma watches the unfamiliar city."
+    },
+    {
+      "id": "window-reflection",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "li-wei-reflection",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train"
+      },
+      "text": "Then notices Li Wei reflected in the glass."
+    },
+    {
+      "id": "looking-at-her",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "li-wei-reflection",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train"
+      },
+      "text": "He's looking at her."
+    },
+    {
+      "id": "looks-away-first",
+      "sceneId": "airport-express",
+      "type": "narration",
+      "presentation": {
+        "view": "train",
+        "backgroundId": "li-wei-reflection",
+        "musicVolume": 0.15,
+        "ambienceId": "airport-express-train"
+      },
+      "text": "He looks away first."
+    },
+    {
+      "id": "chapter-one-end",
+      "sceneId": "airport-express",
+      "type": "chapter_end",
+      "presentation": {
+        "view": "chapter-end",
+        "backgroundId": "li-wei-reflection",
+        "musicVolume": 0.15
+      },
+      "title": "CHAPTER END",
+      "vocabularyTitle": "New vocabulary unlocked",
+      "vocabulary": [
+        {
+          "id": "beijing",
+          "hanzi": "北京",
+          "meaning": "Beijing",
+          "pinyin": "Běijīng",
+          "audioId": "vocabulary-beijing",
+          "speakerId": "vocabulary-narrator"
+        },
+        {
+          "id": "jiaohuansheng",
+          "hanzi": "交换生",
+          "meaning": "exchange student",
+          "pinyin": "jiāohuànshēng",
+          "audioId": "vocabulary-jiaohuansheng",
+          "speakerId": "vocabulary-narrator"
+        },
+        {
+          "id": "meiguo",
+          "hanzi": "美国",
+          "meaning": "America",
+          "pinyin": "Měiguó",
+          "audioId": "vocabulary-meiguo",
+          "speakerId": "vocabulary-narrator"
+        },
+        {
+          "id": "ziji",
+          "hanzi": "自己",
+          "meaning": "oneself",
+          "pinyin": "zìjǐ",
+          "audioId": "vocabulary-ziji",
+          "speakerId": "vocabulary-narrator"
+        },
+        {
+          "id": "kan-lu",
+          "hanzi": "看路",
+          "meaning": "watch where you're going",
+          "pinyin": "kàn lù",
+          "audioId": "vocabulary-kan-lu",
+          "speakerId": "vocabulary-narrator"
+        },
+        {
+          "id": "bucuo",
+          "hanzi": "不错",
+          "meaning": "not bad",
+          "pinyin": "búcuò",
+          "audioId": "vocabulary-bucuo",
+          "speakerId": "vocabulary-narrator"
+        }
+      ],
+      "nextEventId": null
+    }
+  ]
+}

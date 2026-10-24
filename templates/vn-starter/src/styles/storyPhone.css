@@ -1,0 +1,295 @@
+.story-phone {
+  position: relative;
+  isolation: isolate;
+  width: min(360px, 100%);
+  min-width: 0;
+  flex: none;
+  color: #202020;
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  text-align: left;
+}
+
+.story-phone[hidden] {
+  display: none;
+}
+
+/* The overflow control sits outside this unchanged physical shell/aperture. */
+.story-phone-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+
+.story-phone .story-phone-scroll {
+  display: block;
+  width: 70%;
+  min-height: 44px;
+  margin: 8px auto 0;
+  padding: 8px 12px;
+  border: 1px solid #a6aaa68c;
+  background: #171b21b3;
+  color: #ecece8;
+  font-size: 14px;
+  text-align: center;
+}
+
+.story-phone *,
+.story-phone *::before,
+.story-phone *::after {
+  box-sizing: border-box;
+}
+
+/* Exact approved 1024×1536 shell: aperture [205,85,820,1453], radius ≈66. */
+.story-phone-screen {
+  position: absolute;
+  left: 20.01953125%;
+  top: 5.5338541667%;
+  width: 60.05859375%;
+  height: 89.0625%;
+  border-radius: 10.7317073171% / 4.8245614035%;
+  background: #ededed;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Percent padding resolves against canvas width: source y85 +45 clears the notch. */
+  padding-top: 4.39453125%;
+}
+
+.story-phone-shell {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.story-phone-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 0 12px;
+  font-size: 12px;
+  line-height: 17px;
+  flex: none;
+}
+
+.story-phone-status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.story-phone-status-icons svg {
+  width: 14px;
+  height: 12px;
+}
+
+.story-phone-header {
+  padding: 8px 6px 7px;
+  border-bottom: 1px solid #d8d8d8;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  flex: none;
+}
+
+.story-phone-date {
+  margin: 7px 0;
+  color: #626262;
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: center;
+  flex: none;
+}
+
+.story-phone-transcript {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 0 8px 8px;
+}
+
+.story-phone-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.story-phone-message {
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+  margin: 0 0 10px;
+}
+
+.story-phone-message[data-direction="outgoing"] {
+  flex-direction: row-reverse;
+}
+
+.story-phone-message:last-child {
+  margin-bottom: 0;
+}
+
+.story-phone-avatar {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 24px;
+  flex: none;
+  border-radius: 4px;
+  font-size: 12px;
+  color: white;
+  background: #647e79;
+}
+
+.story-phone-bubble {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 8px 8px;
+  border-radius: 4px;
+  background: white;
+}
+
+.story-phone-message[data-direction="outgoing"] .story-phone-bubble {
+  background: #95ec69;
+}
+
+.story-phone-sender {
+  margin: 0 0 4px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #585858;
+}
+
+.story-phone-row + .story-phone-row {
+  margin-top: 10px;
+}
+
+.story-phone-row p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.story-phone-row [lang="zh-Hans"] {
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.story-phone-row [lang="zh-Latn"],
+.story-phone-row [lang="en"] {
+  margin-top: 3px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.story-phone-row [lang="zh-Latn"] {
+  color: #595959;
+}
+
+.story-phone button {
+  min-width: 44px;
+  min-height: 44px;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.3;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  overflow-wrap: anywhere;
+}
+
+.story-phone :focus-visible {
+  outline: 3px solid #246748;
+  outline-offset: -3px;
+}
+
+.story-phone-attachment-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  width: 100%;
+  padding: 2px 0;
+  text-align: left;
+  background: transparent;
+  border: 0;
+}
+
+.story-phone-document {
+  background: white;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.story-phone-map-trigger {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 5px;
+  text-align: left;
+  border: 1px solid #c7cec3;
+  background: #f4f7f0;
+}
+
+.story-phone-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.story-phone-back {
+  background: white;
+  border: 1px solid #c7cec3;
+  padding: 8px;
+}
+
+.story-phone-map-detail h3,
+.story-phone-map-detail p {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.story-phone-composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 26px;
+  padding: 4px 9px;
+  background: #f7f7f7;
+  border-top: 1px solid #d8d8d8;
+  font-size: 15px;
+  flex: none;
+}
+
+.story-phone-composer-field {
+  flex: 1;
+  height: 17px;
+  background: white;
+  border-radius: 3px;
+}
+
+.story-phone-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,138 @@
+.story-document {
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  width: 42%;
+  padding: 1.3rem;
+  background: #f5f0e5;
+  color: #26272e;
+  box-shadow: 0 12px 40px #0005;
+}
+.document-row + .document-row {
+  border-top: 1px solid #c8c1b3;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+}
+.document-row p {
+  margin: 0.25rem 0;
+  font-size: clamp(0.85rem, 1vw, 1.15rem);
+  line-height: 1.4;
+}
+.document-row p:first-child {
+  font-size: clamp(1.05rem, 1.5vw, 1.65rem);
+}
+.story-print-collection {
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  width: 35%;
+}
+.story-print-active {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  box-shadow: 0 8px 28px #0006;
+}
+.story-print-strip {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.3rem;
+  align-items: center;
+}
+.story-print-strip li {
+  justify-self: center;
+}
+.story-print-strip img,
+.story-print-back {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+.story-print-back {
+  background: #eee7d6;
+  border: 1px solid #b7af9b;
+  box-shadow: 0 2px 4px #0005;
+}
+.game-viewport[data-foreground="document"] .scene-dialogue {
+  left: 52%;
+  right: 5%;
+  bottom: 15%;
+}
+.game-viewport[data-foreground="document"] .story-decision {
+  left: 51%;
+  width: 45%;
+  top: 5%;
+  bottom: 12%;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .story-document {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    margin: 1rem;
+    padding: 0.8rem;
+  }
+  .document-row p {
+    font-size: 0.8rem;
+  }
+  .document-row p:first-child {
+    font-size: 1rem;
+  }
+  .document-row + .document-row {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+  }
+  .game-viewport[data-foreground="document"] {
+    overflow-y: auto;
+    padding-bottom: 6rem;
+  }
+  .game-viewport[data-foreground="document"] .scene-dialogue,
+  .game-viewport[data-foreground="document"] .story-decision {
+    position: relative;
+    inset: auto;
+    width: auto;
+    margin: 1rem;
+    max-height: none;
+  }
+  .game-viewport[data-foreground="document"] .scene-continue {
+    position: relative;
+    float: right;
+    inset: auto;
+    margin: 0 1rem;
+  }
+  .story-print-collection {
+    position: relative;
+    inset: auto;
+    width: auto;
+    margin: 240px 1rem 1rem;
+  }
+  .story-print-active {
+    width: 100%;
+  }
+  .game-viewport[data-foreground="collection"] {
+    height: auto;
+    min-height: calc(100dvh - 72px);
+    padding-bottom: 3rem;
+    overflow: hidden;
+  }
+  .game-viewport[data-foreground="collection"] .scene-dialogue,
+  .game-viewport[data-foreground="collection"] .story-decision {
+    position: relative;
+    inset: auto;
+    width: auto;
+    margin: 1rem;
+    max-height: none;
+  }
+  .game-viewport[data-foreground="collection"] .scene-continue {
+    position: relative;
+    inset: auto;
+    display: flex;
+    margin: 1rem 1rem 0 auto;
+  }
+}

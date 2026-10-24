@@ -1,0 +1,45 @@
+.game-viewport[data-view="exam"] .scene-atmosphere {
+  background: linear-gradient(180deg, transparent 45%, #100f1c70 100%);
+}
+.game-viewport[data-chapter="chapter-three"][data-view="chapter-end"] .chapter-end-panel {
+  left: 12%;
+  width: 76%;
+  top: 8%;
+  bottom: 8%;
+}
+.game-viewport[data-chapter="chapter-three"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  /* Center the right-side waist-up portrait without exposing its cropped lower edge. */
+  .game-viewport[data-view="cafe"][data-framing="waist-up"] .phaser-host {
+    width: 160%;
+    left: -62.5%;
+    top: 0;
+  }
+  .game-viewport[data-chapter="chapter-three"][data-view="cafe"] .story-decision {
+    top: 29%;
+    bottom: 4%;
+    height: auto;
+  }
+  .game-viewport[data-view="exam"] .phaser-host,
+  .game-viewport[data-chapter="chapter-three"][data-view="phrase-builder"] .phaser-host {
+    width: 160%;
+    left: -30%;
+    top: 0;
+  }
+  .game-viewport[data-view="exam"] .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 25%, #100f1c70 44%, #100f1c 63%);
+  }
+  .game-viewport[data-chapter="chapter-three"][data-view="chapter-end"] .chapter-end-panel {
+    left: 6%;
+    width: 88%;
+    top: 6%;
+    bottom: 6%;
+  }
+  .game-viewport[data-chapter="chapter-three"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

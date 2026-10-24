@@ -1,0 +1,100 @@
+.game-viewport[data-chapter="chapter-six"]:not([data-foreground="document"]) {
+  /* Cropped artwork must not become a horizontal scroll target when controls receive focus. */
+  overflow: clip;
+}
+.game-viewport[data-chapter="chapter-six"] .scene-dialogue {
+  bottom: 11%;
+  max-height: 42%;
+  overflow-y: auto;
+}
+.game-viewport[data-chapter="chapter-six"] .scene-narration .dialogue-text {
+  font-size: clamp(1rem, 1.3vw, 1.5rem);
+  line-height: 1.55;
+}
+.game-viewport[data-chapter="chapter-six"] .scene-dialogue:has(.dialogue-text:empty) {
+  display: none;
+}
+.game-viewport[data-chapter="chapter-six"] .story-foreground {
+  position: absolute;
+  width: 6%;
+  height: auto;
+  left: 74%;
+  top: 83%;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 3px #15140f55);
+}
+.game-viewport[data-chapter="chapter-six"][data-scene="ch6-campus-decline"] .story-foreground {
+  left: 40%;
+  top: 68%;
+  width: 10%;
+}
+.game-viewport[data-chapter="chapter-six"][data-framing="courtyard-bench-seated"]::after {
+  content: "";
+  position: absolute;
+  left: 77%;
+  top: 90%;
+  width: 4%;
+  height: 1.5%;
+  background: #e5ddc7;
+  border: 1px solid #b6aa91;
+  transform: skew(-20deg) rotate(-8deg);
+  box-shadow: 1px 2px 3px #0004;
+  pointer-events: none;
+}
+.game-viewport[data-chapter="chapter-six"][data-view="chapter-end"] .chapter-end-panel {
+  inset: 5% 12%;
+  width: 76%;
+}
+.game-viewport[data-chapter="chapter-six"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 2rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-six"] .phaser-host {
+    width: 166.6667%;
+    left: -33.3333%;
+    top: 0;
+  }
+  .game-viewport[data-chapter="chapter-six"][data-framing="dorm-bed-seated"] .phaser-host {
+    width: 166.6667%;
+    left: -65%;
+  }
+  .game-viewport[data-chapter="chapter-six"] .scene-dialogue {
+    bottom: 13%;
+    max-height: 46%;
+  }
+  .game-viewport[data-chapter="chapter-six"] .scene-narration .dialogue-text {
+    font-size: 1rem;
+  }
+  .game-viewport[data-chapter="chapter-six"][data-foreground="document"] .scene-dialogue {
+    inset: auto;
+    max-height: none;
+  }
+  .game-viewport[data-chapter="chapter-six"][data-foreground="document"] .story-document {
+    margin-top: 220px;
+  }
+  .game-viewport[data-chapter="chapter-six"] .story-foreground {
+    width: 10%;
+    left: 90%;
+    top: 300px;
+  }
+  .game-viewport[data-chapter="chapter-six"][data-scene="ch6-campus-decline"] .story-foreground {
+    left: 34%;
+    top: 270px;
+    width: 16%;
+  }
+  .game-viewport[data-chapter="chapter-six"][data-framing="courtyard-bench-seated"]::after {
+    left: 92%;
+    top: 328px;
+    width: 6%;
+    height: 5px;
+  }
+  .game-viewport[data-chapter="chapter-six"][data-view="chapter-end"] .chapter-end-panel {
+    inset: 5% 6%;
+    width: 88%;
+  }
+  .game-viewport[data-chapter="chapter-six"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

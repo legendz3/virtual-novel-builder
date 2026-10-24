@@ -1,0 +1,69 @@
+/* Chapter Eight's longer conversations retain the shared controls and scroll within their panel. */
+.game-viewport[data-chapter="chapter-eight"]:not([data-foreground]) .scene-dialogue {
+  max-height: 48%;
+  overflow-y: auto;
+}
+.game-viewport[data-chapter="chapter-eight"] .scene-narration:has(.dialogue-text:empty) {
+  display: none;
+}
+.game-viewport[data-chapter="chapter-eight"][data-foreground="image"] .story-foreground {
+  left: 4%;
+  width: 38%;
+  height: 82%;
+}
+.game-viewport[data-chapter="chapter-eight"][data-foreground="image"] .scene-dialogue {
+  left: 48%;
+  right: 5%;
+  max-height: 55%;
+  overflow-y: auto;
+}
+.game-viewport[data-chapter="chapter-eight"] .document-row p {
+  font-size: 1rem;
+}
+.game-viewport[data-chapter="chapter-eight"] .document-row p:first-child {
+  font-size: 1.2rem;
+}
+.game-viewport[data-chapter="chapter-eight"][data-view="chapter-end"] .chapter-end-panel {
+  inset: 5% 8%;
+  width: 84%;
+}
+.game-viewport[data-chapter="chapter-eight"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-eight"][data-framing="dorm-bed-seated"] .phaser-host {
+    left: -89%;
+  }
+  .game-viewport[data-chapter="chapter-eight"][data-foreground="document"] .story-document {
+    margin-top: 220px;
+  }
+  /* The independent outline remains readable in flow, instead of disappearing in the artwork crop. */
+  .game-viewport[data-chapter="chapter-eight"][data-foreground="image"] {
+    overflow-y: auto;
+    padding-bottom: 6rem;
+  }
+  .game-viewport[data-chapter="chapter-eight"][data-foreground="image"] .story-foreground {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 62%;
+    height: auto;
+    margin: 220px auto 1rem;
+  }
+  .game-viewport[data-chapter="chapter-eight"][data-foreground="image"] .scene-dialogue {
+    position: relative;
+    inset: auto;
+    margin: 1rem;
+    max-height: none;
+  }
+  .game-viewport[data-chapter="chapter-eight"][data-foreground="image"] .scene-continue {
+    position: relative;
+    inset: auto;
+    margin: 1rem 1rem 0 auto;
+  }
+  .game-viewport[data-chapter="chapter-eight"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

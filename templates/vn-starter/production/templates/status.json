@@ -1,0 +1,14 @@
+{
+  "chapter": null,
+  "phase": "initialized",
+  "writer": "pending",
+  "director": "pending",
+  "art": "pending",
+  "directorReview": "pending",
+  "implementation": "pending",
+  "qa": "pending",
+  "documentation": "pending",
+  "postmortem": "pending",
+  "complete": false,
+  "blockers": []
+}

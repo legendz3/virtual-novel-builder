@@ -1,0 +1,21 @@
+# dependencies and builds
+node_modules/
+.venv/
+.next/
+__pycache__/
+*.tsbuildinfo
+templates/vn-starter/dist/
+
+# secrets and local state (credentials, encryption key, story registry)
+.env
+.env.*
+!.env.example
+.data/
+
+# generated story workspaces and LangGraph dev state
+projects/
+.langgraph_api/
+
+# local machine files
+.DS_Store
+.claude/settings.local.json

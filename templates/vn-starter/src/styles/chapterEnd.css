@@ -1,0 +1,169 @@
+.game-viewport[data-view="chapter-end"] .scene-atmosphere {
+  background: linear-gradient(90deg, #100f1ced 0%, #100f1cc9 34%, #100f1c1a 76%);
+}
+.chapter-end-panel {
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 8%;
+  width: 39%;
+  overflow-y: auto;
+  padding: clamp(1rem, 2.2vw, 2.5rem) 0;
+  border-top: 1px solid #dcb7a2a6;
+  animation: chapter-end-arrive 1.4s ease both;
+}
+.chapter-end-panel h2 {
+  margin: 0 0 1.7rem;
+  color: #f8e5d4;
+  font:
+    400 clamp(1.6rem, 3vw, 3rem)/1.2 Georgia,
+    serif;
+  letter-spacing: 0.13em;
+}
+.chapter-end-panel h2:focus {
+  outline: none;
+}
+.chapter-end-panel h3 {
+  margin: 0 0 1rem;
+  color: #cfb5ac;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+}
+.chapter-vocabulary {
+  margin: 0;
+}
+.chapter-vocabulary > div {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 0.75fr) 1.5fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: clamp(0.35rem, 0.65vw, 0.65rem) 0;
+  border-bottom: 1px solid #e8c3b31f;
+}
+.chapter-vocabulary dt {
+  color: #f7e7db;
+  font:
+    400 clamp(1.2rem, 1.8vw, 1.8rem)/1.4 "Songti SC",
+    serif;
+}
+.chapter-vocabulary dd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+  color: #e0d0cb;
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+  line-height: 1.5;
+}
+.vocabulary-pinyin {
+  display: block;
+  color: #c9afb3;
+  font:
+    400 0.8rem/1.5 system-ui,
+    sans-serif;
+  margin-top: 0.2rem;
+}
+.vocabulary-speaker {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  min-height: 0;
+  padding: 9px;
+  border: 1px solid #dcb7a23b;
+  border-radius: 50%;
+  background: #e8c3b308;
+  color: #e8c3b3;
+}
+.vocabulary-speaker svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.vocabulary-speaker:hover:not(:disabled),
+.vocabulary-speaker[data-speaking="true"] {
+  color: #ffe1e7;
+  background: #c583992b;
+  border-color: #d7a8b8;
+}
+.vocabulary-speaker:focus-visible {
+  outline: 2px solid #e6bfc2;
+  outline-offset: 3px;
+}
+.vocabulary-speaker:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.vocabulary-speaker[data-speaking="true"] .speaker-wave {
+  animation: vocabulary-speaking 0.75s ease-in-out infinite alternate;
+}
+.vocabulary-speech-status {
+  margin: 0.8rem 0 0;
+  color: #d4b7bd;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.vocabulary-speech-status:empty {
+  display: none;
+}
+@keyframes vocabulary-speaking {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes chapter-end-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-view="chapter-end"] .phaser-host {
+    width: 160%;
+    left: -45%;
+    top: 0;
+  }
+  .game-viewport[data-view="chapter-end"] .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 8%, #100f1c73 28%, #100f1c 49%);
+  }
+  .chapter-end-panel {
+    top: 38%;
+    bottom: 3%;
+    left: 7%;
+    width: 86%;
+    padding: 1.1rem 0 0;
+  }
+  .chapter-end-panel h2 {
+    font-size: 1.65rem;
+    margin-bottom: 1rem;
+  }
+  .chapter-end-panel h3 {
+    font-size: 0.68rem;
+    margin-bottom: 0.6rem;
+  }
+  .chapter-vocabulary > div {
+    padding: 0.45rem 0;
+  }
+  .chapter-vocabulary dt {
+    font-size: 1.25rem;
+  }
+  .chapter-vocabulary dd {
+    font-size: 0.86rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter-end-panel {
+    animation: none;
+  }
+  .vocabulary-speaker[data-speaking="true"] .speaker-wave {
+    animation: none;
+  }
+}

@@ -1,0 +1,6 @@
+# Preserve captured command output and diagnostic patches byte-for-byte.
+production/chapter-*/**/*.log -whitespace
+production/chapter-*/**/*.diff -whitespace
+
+# Two trailing spaces are intentional Markdown hard line breaks.
+*.md whitespace=-blank-at-eol

@@ -1,0 +1,99 @@
+.game-viewport:is([data-view="campus"], [data-view="schedule"]) .scene-atmosphere {
+  background: linear-gradient(180deg, transparent 45%, #100f1c70 100%);
+}
+.game-viewport[data-view="campus"] .story-decision {
+  top: auto;
+  bottom: 10%;
+  height: auto;
+  max-height: 82%;
+}
+.decision-hint {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border-left: 2px solid #d9b19e;
+  color: #efd9ca;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #e0b3970a;
+}
+.story-foreground {
+  position: absolute;
+  top: 1%;
+  left: 7%;
+  width: 42%;
+  height: 87%;
+  object-fit: contain;
+  object-position: center top;
+  filter: drop-shadow(0 12px 20px #0006);
+  pointer-events: none;
+}
+.game-viewport[data-view="fade-out"] .scene-atmosphere {
+  z-index: 3;
+  background: #000;
+  animation: chapter-fade-out 1.4s linear both;
+}
+.game-viewport[data-view="fade-out"][data-paused="true"] .scene-atmosphere {
+  animation-play-state: paused;
+}
+.game-viewport[data-view="fade-out"] .scene-paused {
+  z-index: 4;
+}
+.game-viewport[data-chapter="chapter-two"][data-view="chapter-end"] .chapter-end-panel {
+  left: 12%;
+  width: 76%;
+  top: 8%;
+  bottom: 8%;
+}
+.game-viewport[data-chapter="chapter-two"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+}
+@keyframes chapter-fade-out {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-view="campus"] .phaser-host {
+    width: 200%;
+    left: -83%;
+    top: 0;
+  }
+  .game-viewport:is([data-view="schedule"], [data-view="fade-out"]) .phaser-host {
+    width: 180%;
+    left: -43%;
+    top: 0;
+  }
+  .game-viewport:is([data-view="campus"], [data-view="schedule"]) .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 25%, #100f1c70 44%, #100f1c 63%);
+  }
+  .game-viewport[data-view="campus"] .story-decision {
+    top: 27%;
+    bottom: 4%;
+    max-height: none;
+  }
+  .story-foreground {
+    top: 12%;
+    left: 4%;
+    width: 72%;
+    height: 48%;
+  }
+  .game-viewport[data-chapter="chapter-two"][data-view="chapter-end"] .chapter-end-panel {
+    left: 6%;
+    width: 88%;
+    top: 6%;
+    bottom: 6%;
+  }
+  .game-viewport[data-chapter="chapter-two"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-viewport[data-view="fade-out"] .scene-atmosphere {
+    animation: none;
+  }
+}

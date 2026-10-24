@@ -1,0 +1,684 @@
+.arrival-page {
+  min-height: 100dvh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.game-viewport {
+  position: relative;
+  width: min(100%, calc((100dvh - 64px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  margin: auto;
+  overflow: hidden;
+  background: #000;
+  isolation: isolate;
+}
+.phaser-host {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: 1;
+  transition:
+    opacity 1.5s ease,
+    filter 1.8s ease;
+}
+.phaser-host canvas {
+  display: block;
+}
+.game-viewport[data-view="dark"] .phaser-host {
+  opacity: 0;
+}
+.game-viewport[data-view="window"] .phaser-host {
+  filter: saturate(0.58) contrast(0.91);
+}
+.game-viewport[data-view="title"] .phaser-host {
+  filter: brightness(0.73) saturate(1.12) contrast(1.08);
+}
+.scene-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.game-viewport[data-view="window"] .scene-atmosphere {
+  background: linear-gradient(180deg, #819aac20 0%, #9cafbd16 45%, #080c17b8 100%);
+}
+.game-viewport[data-view="title"] .scene-atmosphere {
+  background: radial-gradient(ellipse at 50% 52%, #24132924 15%, #17132642 100%);
+}
+.scene-start,
+.scene-paused {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: #000;
+}
+.scene-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: #b3a0a7;
+}
+.begin-button {
+  margin: 1.8rem 0 0.7rem;
+  padding: 0.7rem 2rem;
+  gap: 3rem;
+  background: transparent;
+  color: #efe3dd;
+  border: 1px solid #6f545e;
+  border-radius: 0;
+  font-size: 1rem;
+}
+.begin-button:hover {
+  background: #21191e;
+  border-color: #d9a4b5;
+}
+.start-note {
+  font-size: 0.75rem;
+  color: #a29c9e;
+}
+.scene-dialogue {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: 12%;
+  animation: dialogue-arrive 0.45s ease both;
+  padding: 1.3rem 2rem 1.4rem;
+  background: #10131deb;
+  border-left: 2px solid #c99c9b;
+  box-shadow: 0 12px 48px #0002;
+}
+.dialogue-speaker {
+  margin: 0 0 0.65rem;
+  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  color: #e6bfc2;
+}
+.dialogue-text {
+  margin: 0;
+  font:
+    400 clamp(1.1rem, 1.7vw, 1.9rem)/1.6 Georgia,
+    "Songti SC",
+    serif;
+  color: #f4eeea;
+  max-width: 65ch;
+  white-space: pre-line;
+}
+.scene-narration {
+  background: #10131de0;
+  border-left-color: #a9b6c0;
+}
+.scene-narration .dialogue-text {
+  font-style: italic;
+}
+.game-viewport[data-view="dark"] .scene-dialogue {
+  left: 19%;
+  right: 19%;
+  bottom: 38%;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  text-align: center;
+}
+.game-viewport[data-view="dark"] .dialogue-text {
+  font-size: clamp(1.25rem, 2vw, 2rem);
+}
+.sound-caption {
+  position: absolute;
+  width: 100%;
+  max-width: none;
+  bottom: 13%;
+  margin: 0;
+  padding: 0 1.5rem;
+  color: #aaa5aa;
+  text-align: center;
+  font:
+    italic 0.95rem/1.7 Georgia,
+    serif;
+  animation: dialogue-arrive 1s ease both;
+}
+.scene-continue {
+  position: absolute;
+  right: 9%;
+  bottom: 3%;
+  min-width: 100px;
+  gap: 1.5rem;
+  color: #fff1e8;
+  border: 0;
+  background: #10131ddb;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+.scene-continue:hover {
+  background: #3c2834;
+}
+.scene-title {
+  position: absolute;
+  inset: 0;
+  text-align: center;
+  pointer-events: none;
+}
+.scene-title h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 58%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  animation: title-reveal 5s ease-in-out 0.2s both;
+}
+.scene-title img {
+  width: 100%;
+  display: block;
+}
+.scene-toolbar {
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 3%;
+  background: #08090d;
+  border-top: 1px solid #252027;
+  font-size: 0.75rem;
+  color: #a69aa1;
+}
+.scene-toolbar a {
+  padding: 0.7rem 0;
+  text-decoration: none;
+  color: #c2b5bb;
+}
+.scene-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  gap: 0.5rem;
+}
+.scene-toolbar button {
+  background: transparent;
+  border: 0;
+  color: #c2b5bb;
+  font-size: 0.75rem;
+  padding: 0.5rem 0.7rem;
+}
+.scene-toolbar button:hover {
+  color: #fff;
+}
+.save-feedback {
+  /* Passive save status must not intercept nearby story controls. */
+  pointer-events: none;
+  position: absolute;
+  bottom: 100%;
+  right: 3%;
+  font-size: 0.75rem;
+  background: #08090de8;
+  padding: 0.3rem 0.7rem;
+  border-radius: 3px;
+}
+.save-feedback:empty {
+  display: none;
+}
+.scene-audio-error {
+  background: #32202c;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+}
+.scene-audio-error button {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  text-decoration: underline;
+}
+.arrival-phone {
+  position: absolute;
+  top: 30.8%;
+  left: 39.8%;
+  width: 20.4%;
+  height: 45%;
+  color: #202432;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.phone-mobile-header,
+.phone-contact,
+.phone-date {
+  display: none;
+}
+.phone-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+  padding: 1.2% 4%;
+  font-size: clamp(0.75rem, 1.1vw, 1.2rem);
+  line-height: 1.3;
+}
+.phone-bubble {
+  margin: 0;
+  align-self: flex-start;
+  max-width: 95%;
+  background: #e0e0e8;
+  border-radius: 1em 1em 1em 0.3em;
+  padding: 0.52em 0.65em;
+  animation: message-arrive 0.3s ease both;
+}
+.scene-paused {
+  background: #050408e8;
+}
+.scene-paused > p {
+  font:
+    italic 1.6rem Georgia,
+    serif;
+}
+@keyframes dialogue-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes message-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes title-reveal {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 18px)) scale(0.92);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0);
+  }
+}
+/* Arrival-hall decisions remain React controls above the supplied Phaser character layers. */
+.game-viewport[data-view="hall"] .scene-atmosphere {
+  background: linear-gradient(180deg, #09111c05 25%, #0d142030 65%, #080c16c9 100%);
+}
+.game-viewport[data-view="street"] .scene-atmosphere {
+  background: linear-gradient(180deg, transparent 35%, #080c1670 100%);
+}
+.game-viewport[data-view="train"] .scene-atmosphere {
+  background: linear-gradient(180deg, transparent 45%, #17101d80 100%);
+}
+.game-viewport[data-view="train"] .story-decision {
+  top: auto;
+  bottom: 12%;
+  width: 40%;
+  max-height: 76%;
+}
+.dialogue-pinyin,
+.dialogue-translation {
+  margin: 0.45rem 0 0;
+  color: #cfc3c9;
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  line-height: 1.5;
+}
+.dialogue-translation {
+  color: #b9b7c1;
+  font-style: italic;
+}
+.announcement-replay {
+  margin-top: 0.8rem;
+  padding: 0.35rem 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #e6bfc2;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.story-decision {
+  position: absolute;
+  left: 7%;
+  top: 9%;
+  bottom: 9%;
+  width: 45%;
+  overflow-y: auto;
+  padding: clamp(1rem, 2.2vw, 2.6rem);
+  background: #10131def;
+  border-top: 2px solid #c99c9b;
+  box-shadow: 0 18px 60px #0004;
+  animation: dialogue-arrive 0.5s ease both;
+}
+.story-decision .scene-eyebrow {
+  margin: 0 0 1.3rem;
+  color: #e6bfc2;
+}
+.story-decision h2 {
+  font:
+    400 clamp(1.1rem, 1.5vw, 1.7rem)/1.5 Georgia,
+    serif;
+  color: #f4eeea;
+  margin: 1.2rem 0;
+}
+.decision-question > p:first-child {
+  font:
+    400 clamp(1.4rem, 2vw, 2.2rem)/1.5 "Songti SC",
+    serif;
+  color: #fff1ea;
+  margin: 0;
+}
+.decision-options {
+  display: grid;
+  gap: 0.75rem;
+}
+.decision-options button {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #6b5360;
+  border-radius: 3px;
+  background: #201c26c9;
+  color: #f4eeea;
+  text-align: left;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  font-size: clamp(0.9rem, 1.15vw, 1.2rem);
+  line-height: 1.45;
+}
+.decision-options button:hover {
+  background: #3c2834;
+  border-color: #d9a4b5;
+}
+.decision-options button:focus-visible {
+  outline: 2px solid #e6bfc2;
+  outline-offset: 3px;
+}
+.option-letter {
+  color: #dda7bc;
+  font-size: 0.8em;
+}
+.decision-options button:has(.choice-label) {
+  display: block;
+}
+.choice-label,
+.choice-quote,
+.choice-pinyin,
+.choice-translation {
+  display: block;
+}
+.choice-label {
+  color: #f7e6e7;
+}
+.choice-quote {
+  margin-top: 0.4rem;
+  font-size: 0.95em;
+}
+.choice-pinyin,
+.choice-translation {
+  color: #c5b5bf;
+  font-size: 0.8em;
+  margin-top: 0.25rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport {
+    width: 100%;
+    height: calc(100dvh - 72px);
+    min-height: 620px;
+    aspect-ratio: auto;
+    margin: 0;
+  }
+  .phaser-host {
+    top: 3%;
+    bottom: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .game-viewport[data-view="window"] .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 20%, #07090edb 43%, #07090e 65%);
+  }
+  .scene-dialogue {
+    left: 6%;
+    right: 6%;
+    bottom: 17%;
+    padding: 1.25rem;
+  }
+  .dialogue-text {
+    font-size: 1.25rem;
+    line-height: 1.65;
+  }
+  .dialogue-speaker {
+    font-size: 0.7rem;
+  }
+  .game-viewport[data-view="dark"] .scene-dialogue {
+    left: 7%;
+    right: 7%;
+    bottom: 36%;
+  }
+  .scene-continue {
+    right: 6%;
+    bottom: 6%;
+  }
+  .arrival-phone {
+    top: 17%;
+    left: 12%;
+    width: 76%;
+    height: 66%;
+    background: #f2f2f9;
+    border: 7px solid #201d24;
+    border-radius: 34px;
+    box-shadow: 0 18px 60px #0008;
+    overflow: hidden;
+  }
+  .phone-mobile-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 14px 20px 6px;
+  }
+  .phone-battery {
+    color: #a8273f;
+  }
+  .phone-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9dbe7;
+    font-size: 0.85rem;
+  }
+  .phone-contact span {
+    background: #ce879c;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+  }
+  .phone-date {
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #707489;
+    margin: 10px 0;
+  }
+  .phone-messages {
+    padding: 6px 12px;
+    font-size: 0.95rem;
+    gap: 0.7em;
+  }
+  .scene-title h2 {
+    width: 94%;
+  }
+  .game-viewport[data-view="title"] .phaser-host {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .scene-toolbar {
+    min-height: 72px;
+    padding: 0.5rem 4%;
+  }
+  .scene-toolbar-actions {
+    gap: 0;
+  }
+  .scene-toolbar button {
+    font-size: 0.65rem;
+    padding-inline: 0.45rem;
+  }
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport:is([data-view="hall"], [data-view="street"]) .phaser-host {
+    width: 200%;
+    left: -83%;
+    top: 0;
+  }
+  .game-viewport:is([data-view="hall"], [data-view="street"]) .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 20%, #080c1660 40%, #080c16 62%);
+  }
+  .story-decision {
+    top: 25%;
+    bottom: 5%;
+    left: 5%;
+    width: 90%;
+    padding: 1.2rem;
+  }
+  .story-decision .scene-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.9rem;
+  }
+  .story-decision h2 {
+    font-size: 1.1rem;
+    margin: 0.9rem 0;
+  }
+  .decision-question > p:first-child {
+    font-size: 1.35rem;
+  }
+  .decision-options {
+    gap: 0.6rem;
+  }
+  .decision-options button {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+  .dialogue-pinyin,
+  .dialogue-translation {
+    font-size: 0.9rem;
+  }
+  .game-viewport[data-view="train"] .phaser-host {
+    width: 160%;
+    left: -45%;
+    top: 0;
+  }
+  .game-viewport[data-view="train"] .scene-atmosphere {
+    background: linear-gradient(180deg, transparent 15%, #080c1670 30%, #080c16 48%);
+  }
+  .game-viewport[data-view="train"] .story-decision {
+    top: 44%;
+    bottom: 6%;
+    left: 6%;
+    width: 88%;
+    max-height: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phaser-host {
+    transition: none;
+  }
+  .scene-dialogue,
+  .story-decision,
+  .sound-caption,
+  .scene-title h2,
+  .phone-bubble {
+    animation: none;
+  }
+}
+
+/* Authored support wraps inside the existing scrollable dialogue/decision surface. */
+.mandarin-segment {
+  display: grid;
+  gap: 0.3rem;
+  overflow-wrap: anywhere;
+}
+.mandarin-segments {
+  display: grid;
+  gap: 0.6rem;
+}
+.mandarin-segment {
+  margin-top: 0.55rem;
+  font-size: 0.85em;
+}
+.mandarin-question-context,
+.mandarin-natural-source {
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.mandarin-question-context {
+  margin: 0 0 0.75rem;
+}
+.mandarin-question-context p {
+  margin: 0;
+}
+.mandarin-source-speaker {
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+}
+.mandarin-context-segment {
+  display: grid;
+  gap: 0.2rem;
+}
+.mandarin-context-segment [lang="zh-Hans"] {
+  font-size: clamp(1.125rem, 1.075rem + 0.2vw, 1.25rem);
+}
+.mandarin-natural-support {
+  display: block;
+  margin-bottom: 0.35rem;
+  max-width: 100%;
+}
+.mandarin-natural-source {
+  display: grid;
+  gap: 0.2rem;
+}
+.mandarin-natural-meaning,
+.mandarin-natural-text {
+  display: inline;
+}
+.mandarin-natural-source [lang="zh-Latn"],
+.mandarin-question-context [lang="zh-Latn"],
+.mandarin-segment [lang="zh-Latn"] {
+  color: #d6c7cc;
+}
+
+/* Pinyin uses the shared toolbar button styling and a full touch target. */
+.listening-pinyin-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+.listening-pinyin-status {
+  flex-basis: 100%;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.75rem;
+}
+.scene-toolbar > a {
+  flex-shrink: 0;
+}

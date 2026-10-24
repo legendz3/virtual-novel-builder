@@ -1,0 +1,78 @@
+/* Chapter Ten keeps the Director's complete 16:9 compositions at every width. */
+.game-viewport[data-chapter="chapter-ten"] {
+  container-type: inline-size;
+}
+.game-viewport[data-chapter="chapter-ten"] .scene-dialogue {
+  max-height: 42%;
+  overflow-y: auto;
+}
+.game-viewport[data-chapter="chapter-ten"] .scene-narration:has(.dialogue-text:empty) {
+  display: none;
+}
+.game-viewport[data-chapter="chapter-ten"] .document-row p {
+  font-size: 1rem;
+}
+.game-viewport[data-chapter="chapter-ten"] .document-row p:first-child {
+  font-size: 1.2rem;
+}
+.game-viewport[data-chapter="chapter-ten"] .story-foreground[data-asset="wonton-bowls-for-two"] {
+  left: 34.375%;
+  top: 60.833333%;
+  width: 31.25%;
+  height: auto;
+  filter: none;
+}
+.game-viewport[data-chapter="chapter-ten"][data-view="chapter-end"] .chapter-end-panel {
+  inset: 5% 8%;
+  width: 84%;
+}
+.game-viewport[data-chapter="chapter-ten"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-ten"]:not([data-phone]):not([data-view="chapter-title"]):not(
+      [data-view="chapter-end"]
+    ) {
+    overflow-y: auto;
+    padding-bottom: 6rem;
+  }
+  .game-viewport[data-chapter="chapter-ten"]:not([data-phone]) .phaser-host {
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 56.25cqw;
+  }
+  .game-viewport[data-chapter="chapter-ten"]:not([data-phone]):not([data-view="chapter-title"]):not(
+      [data-view="chapter-end"]
+    )
+    :is(.scene-dialogue, .story-decision, .phrase-builder) {
+    position: relative;
+    inset: auto;
+    width: auto;
+    max-height: none;
+    margin: calc(56.25cqw + 1rem) 1rem 1rem;
+  }
+  .game-viewport[data-chapter="chapter-ten"][data-foreground="document"] .story-document {
+    margin-top: calc(56.25cqw + 1rem);
+  }
+  .game-viewport[data-chapter="chapter-ten"][data-foreground="document"]
+    :is(.scene-dialogue, .story-decision) {
+    margin-top: 1rem;
+  }
+  .game-viewport[data-chapter="chapter-ten"]:not([data-phone]):not([data-view="chapter-title"]):not(
+      [data-view="chapter-end"]
+    )
+    .scene-continue {
+    position: relative;
+    inset: auto;
+    float: right;
+    margin: 0 1rem;
+  }
+  .game-viewport[data-chapter="chapter-ten"] .story-foreground[data-asset="wonton-bowls-for-two"] {
+    top: 34.21875cqw;
+  }
+  .game-viewport[data-chapter="chapter-ten"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

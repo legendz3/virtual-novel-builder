@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "producer": "./novel_builder/producer.py:make_graph"
+  },
+  "env": ".env",
+  "http": {
+    "app": "./novel_builder/http_app.py:app"
+  }
+}

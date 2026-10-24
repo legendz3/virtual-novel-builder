@@ -1,0 +1,25 @@
+.phone-preview-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  align-items: center;
+}
+.phone-preview-controls button,
+.phone-preview-controls a {
+  min-height: 44px;
+  padding: 10px 14px;
+}
+.phone-preview-controls [aria-pressed="true"] {
+  outline: 2px solid #c8a46a;
+}
+.phone-preview-note {
+  margin: 0 12px 12px;
+  color: #ccc;
+}
+.phone-preview-paused {
+  position: relative;
+  z-index: 5;
+  grid-column: 1 / -1;
+  text-align: center;
+}

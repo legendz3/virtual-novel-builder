@@ -1,0 +1,78 @@
+/* Phone snapshots and story controls share normal flow; the shell never covers narration. */
+.game-viewport[data-phone] {
+  display: grid;
+  grid-template-columns: minmax(320px, 360px) minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  gap: 20px 40px;
+  padding: 24px 5%;
+  width: min(100%, 1280px);
+  min-height: 610px;
+  aspect-ratio: auto;
+  height: auto;
+}
+.game-viewport[data-phone] .phaser-host {
+  inset: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.48;
+}
+/* Phaser retains its1280×720 render surface; CSS crops that bitmap proportionally for this UI view. */
+.game-viewport[data-phone] .phaser-host canvas {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  object-fit: cover;
+}
+.game-viewport[data-phone] .story-phone {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  justify-self: center;
+}
+.game-viewport[data-phone] :is(.scene-dialogue, .story-decision) {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-height: none;
+  margin: 0;
+  overflow: visible;
+}
+.game-viewport[data-phone] .scene-continue {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  min-height: 44px;
+}
+.game-viewport[data-phone] .scene-dialogue .dialogue-text {
+  font-size: 1.15rem;
+}
+@media (max-width: 999px) {
+  .game-viewport[data-phone] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+    padding: 16px;
+    min-height: 0;
+    width: 100%;
+    overflow: clip;
+  }
+  .game-viewport[data-phone] .story-phone {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .game-viewport[data-phone] :is(.scene-dialogue, .story-decision, .scene-continue) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .game-viewport[data-phone] :is(.scene-dialogue, .story-decision) {
+    padding: 16px;
+  }
+  .game-viewport[data-phone] .scene-dialogue .dialogue-text {
+    font-size: 1rem;
+  }
+}

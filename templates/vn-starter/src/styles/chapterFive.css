@@ -1,0 +1,92 @@
+.game-viewport[data-chapter="chapter-five"] .scene-dialogue {
+  bottom: 11%;
+}
+.game-viewport[data-chapter="chapter-five"][data-foreground="collection"] .scene-dialogue {
+  left: 4%;
+  right: 4%;
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-placement-card"] .scene-dialogue {
+  display: none;
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .story-print-collection {
+  width: 28%;
+  top: 6%;
+  left: 3%;
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .story-decision {
+  top: 49%;
+  bottom: auto;
+  max-height: 47%;
+  left: 3%;
+  width: 64%;
+  padding: 1rem;
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .decision-options {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"]
+  .decision-options
+  button {
+  padding: 0.7rem;
+  font-size: 0.9rem;
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .story-decision h2 {
+  margin: 0.4rem 0 0.7rem;
+}
+.game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .scene-eyebrow {
+  margin-bottom: 0.5rem;
+}
+.game-viewport[data-chapter="chapter-five"][data-view="chapter-end"] .chapter-end-panel {
+  left: 12%;
+  width: 76%;
+  top: 6%;
+  bottom: 6%;
+}
+.game-viewport[data-chapter="chapter-five"] .chapter-vocabulary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+}
+@media (max-width: 600px) and (orientation: portrait) {
+  .game-viewport[data-chapter="chapter-five"] .scene-dialogue {
+    bottom: 15%;
+  }
+  .game-viewport[data-chapter="chapter-five"][data-foreground="collection"] .phaser-host {
+    width: 160%;
+    left: -48%;
+    top: 0;
+    height: 351px;
+  }
+  .game-viewport[data-chapter="chapter-five"]:is(
+      [data-framing="cafe-table-adjacent"],
+      [data-framing="cafe-table-room"]
+    )
+    .phaser-host {
+    left: -60%;
+  }
+  .game-viewport[data-chapter="chapter-five"][data-foreground="collection"] .scene-dialogue,
+  .game-viewport[data-chapter="chapter-five"][data-foreground="document"] .scene-dialogue {
+    inset: auto;
+  }
+  .game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"]
+    .story-print-collection {
+    width: auto;
+    inset: auto;
+  }
+  .game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .story-decision {
+    width: auto;
+    inset: auto;
+  }
+  .game-viewport[data-chapter="chapter-five"][data-event="ch5-photo-choice"] .decision-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .game-viewport[data-chapter="chapter-five"][data-view="chapter-end"] .chapter-end-panel {
+    left: 6%;
+    width: 88%;
+    top: 5%;
+    bottom: 5%;
+  }
+  .game-viewport[data-chapter="chapter-five"] .chapter-vocabulary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
