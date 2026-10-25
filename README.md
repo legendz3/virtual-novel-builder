@@ -2,6 +2,8 @@
 
 A studio of AI agents that produces visual-novel chapters, modeled on the Beijing Heartbeat workflow.
 
+![Novel Builder: stories and chapter pipeline on the left, the Producer's production log with specialist reports on the right](NovelBuilder-screenshot.png)
+
 - **backend/** — LangGraph server. `novel_builder/producer.py` is a deepagents agent (the Producer) that delegates to
   specialist subagents in `novel_builder/agents/` (writer, director, graphic_designer, developer, qa) and pauses for
   author approval (script, art) via `interrupt()`.
