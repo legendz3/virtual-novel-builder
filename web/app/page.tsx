@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CopilotChat, CopilotKit, useAgent, useInterrupt, UseAgentUpdate } from "@copilotkit/react-core/v2";
 import { AccountPanel } from "./account";
-import { ApprovalCard, payloadOf, QuestionCard } from "./cards";
+import { ApprovalCard, payloadOf, QuestionCard, ToolReviewCard } from "./cards";
 import { type Selection, StoriesSidebar, useStories } from "./sidebar";
 import { ToolRenderers } from "./visuals";
 
@@ -82,11 +82,9 @@ function Studio({ selection, select }: { selection: Selection; select: (s: Selec
     enabled: ({ value }) => payloadOf(value) !== null,
     render: ({ event, resolve }) => {
       const payload = payloadOf(event.value)!;
-      return payload.type === "question" ? (
-        <QuestionCard value={payload} resolve={resolve} />
-      ) : (
-        <ApprovalCard value={payload} resolve={resolve} />
-      );
+      if (payload.type === "question") return <QuestionCard value={payload} resolve={resolve} />;
+      if (payload.type === "tool_review") return <ToolReviewCard value={payload} resolve={resolve} />;
+      return <ApprovalCard value={payload} resolve={resolve} />;
     },
   });
 

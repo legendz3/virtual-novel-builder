@@ -72,6 +72,17 @@ payload = codex.chat("openai:gpt-6-luna")._get_request_payload([SystemMessage("B
 assert payload["instructions"] == "Be terse." and all(i.get("role") != "system" for i in payload["input"])
 print("ok codex payload")
 
+# Codex can send a tool call's arguments only in the `.done` event: they become one delta; normal deltas pass unchanged.
+from types import SimpleNamespace as _E
+from novel_builder.models import _ArgsDeltas
+fix = _ArgsDeltas()
+only_done = fix(_E(type="response.function_call_arguments.done", item_id="a", arguments='{"x": 1}', output_index=0, sequence_number=3))
+assert [e.type for e in only_done] == ["response.function_call_arguments.delta", "response.function_call_arguments.done"]
+assert only_done[0].delta == '{"x": 1}'
+fix(_E(type="response.function_call_arguments.delta", item_id="b", delta='{"y"'))
+assert len(fix(_E(type="response.function_call_arguments.done", item_id="b", arguments='{"y": 2}', output_index=1, sequence_number=5))) == 1
+print("ok codex tool args")
+
 # Agent artifacts go to the scratch folder, story files and shell stay in the story folder.
 from deepagents.middleware.filesystem import FilesystemMiddleware
 from novel_builder.workspace import ARTIFACTS_ROOT, get_backend as _gb
@@ -87,3 +98,36 @@ with tempfile.TemporaryDirectory() as tmp:
     fs = FilesystemMiddleware(backend=b)
     assert fs._large_tool_results_prefix == f"{ARTIFACTS_ROOT}/large_tool_results"
 print("ok scratch routing")
+
+# The developer's speech clips pause for the author: the subagent's approval request reaches the producer's thread,
+# and the author's decision (here: edit the line, then approve) resumes it.
+from langchain_core.language_models.fake_chat_models import FakeMessagesListChatModel
+from langchain_core.messages import AIMessage
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.types import Command
+from deepagents import create_deep_agent
+from novel_builder.agents import developer as _dev
+
+
+class _Scripted(FakeMessagesListChatModel):
+    def bind_tools(self, tools, **kwargs):
+        return self
+
+
+def _call(name, args, i):
+    return AIMessage("", tool_calls=[{"name": name, "args": args, "id": f"c{i}"}])
+
+
+with tempfile.TemporaryDirectory() as tmp:
+    b = _gb(Path(tmp))
+    dev = _dev.subagent(RunContext(owner="selftest", backend=b, codex_models=[]))
+    clip = {"text": "你好", "voice_id": "v1", "output_path": "/production/chapter-01/audio/a.mp3"}
+    dev["model"] = _Scripted(responses=[_call("generate_speech", clip, 1), AIMessage("dev done")])
+    g = create_deep_agent(model=_Scripted(responses=[_call("task", {"description": "clip", "subagent_type": "developer"}, 0),
+                                                     AIMessage("done")]), subagents=[dev], backend=b, checkpointer=InMemorySaver())
+    cfg = {"configurable": {"thread_id": "t"}}
+    request = g.invoke({"messages": [{"role": "user", "content": "go"}]}, cfg)["__interrupt__"][0].value
+    assert request["action_requests"][0]["args"] == clip and request["review_configs"][0]["allowed_decisions"] == ["approve", "edit", "reject"]
+    edited = {"type": "edit", "edited_action": {"name": "generate_speech", "args": {**clip, "text": "您好"}}}
+    assert g.invoke(Command(resume={"decisions": [edited]}), cfg)["messages"][-1].content == "done"
+print("ok speech approval")

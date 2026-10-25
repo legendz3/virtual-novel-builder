@@ -28,6 +28,10 @@ Generate the Director's planned voice clips with the `generate_speech` tool usin
 Reuse approved recordings that match. Stage new clips under production/chapter-XX/audio/, then integrate under public/assets/audio/
 with exact IDs and record provenance (text, voice ID, model, settings, path, sha256) in the implementation report. If casting or the tool
 is unavailable, report a blocker; never substitute another voice, provider or browser TTS. New ambience/SFX are author-supplied only.
+Every `generate_speech` call waits for the author's approval card (speech is a paid external call). Request all of a scene's clips
+in one parallel batch so the author reviews them together. The author may approve, edit the spoken text before it is recorded, or
+reject a clip with a reason: never retry a rejected clip unchanged; apply the reason (fix the line or settings and request it again)
+or record the clip as pending with the author's reason.
 
 ## Testing
 Use the `execute` tool from the project root: `npm ci` (first time), `npm run lint`, `npm run test:run`, `npm run build`, and the
@@ -54,4 +58,6 @@ def subagent(ctx: RunContext) -> SubAgent:
         "system_prompt": SYSTEM_PROMPT,
         "model": ctx.chat("openai:gpt-6-luna", "xhigh"),
         "tools": [make_speech_tool(ctx)],
+        # deepagents' native human-in-the-loop gate: the author approves, edits or rejects each clip before it is recorded.
+        "interrupt_on": {"generate_speech": {"allowed_decisions": ["approve", "edit", "reject"]}},
     }

@@ -117,3 +117,35 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 syst
 [data-testid="copilot-assistant-message"]:not(:has(.cpk\:prose :is(p, li, h1, h2, h3, h4, pre, table, blockquote))):not(:has([data-testid="copilot-tool-render"]:not(:empty), .log-line, .specialist, .image-card, .gate)) { display: none; }
 /* CopilotKit's chat surface is light in both color schemes, so content rendered inside it uses a light palette. */
 .chat { --bg: #f7f6f3; --panel: #ffffff; --text: #1d1d1f; --nb-muted: #5f6368; --line: #e4e2dc; --done: #2f7d4f; --active: #a35a0f; background: #ffffff; color: var(--text); }
+/* Review cards: per-item "needs changes" flags, script preview, voice clips, tool-call approvals. */
+.review-group h4 { margin: 10px 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--nb-muted); }
+.gallery li.flagged { outline: 2px solid var(--active); outline-offset: 3px; border-radius: 6px; }
+.gallery .toggle, .request .toggle { font-size: 12px; margin-top: 4px; }
+.gallery .reason, .request .reason { width: 100%; margin-top: 4px; font: inherit; font-size: 12px; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--text); }
+.gallery.audio { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.gallery audio, .speech-card audio { width: 100%; height: 36px; }
+.text-preview { white-space: pre-wrap; font-size: 13px; line-height: 1.55; max-height: 420px; overflow: auto; padding: 10px 12px; margin: 8px 0; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
+.speech-card .line { margin: 0 0 8px; font-size: 15px; }
+.requests { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
+.request { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.request.rejected { opacity: 0.75; border-style: dashed; }
+.request p { margin: 0 0 4px; }
+.gate .request textarea.line { min-height: 40px; margin: 4px 0; font-size: 15px; }
+.request .args { font-size: 11px; max-height: 160px; overflow: auto; margin: 0; }
+/* Formatted markdown for review (scripts, plans, reports). */
+.text-preview.markdown { white-space: normal; font-size: 14px; line-height: 1.6; padding: 4px 18px 12px; }
+.markdown h1 { font-size: 20px; margin: 14px 0 6px; }
+.markdown h2 { font-size: 16px; margin: 18px 0 6px; padding-bottom: 3px; border-bottom: 1px solid var(--line); }
+.markdown h3 { font-size: 14px; margin: 14px 0 4px; color: var(--nb-muted); }
+.markdown p { margin: 6px 0; }
+.markdown blockquote { margin: 8px 0; padding: 4px 12px; border-left: 3px solid var(--active); background: var(--panel); border-radius: 0 6px 6px 0; }
+.markdown blockquote p { margin: 2px 0; }
+.markdown table { display: table; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+.markdown thead { display: table-header-group; }
+.markdown tbody { display: table-row-group; }
+.markdown tr { display: table-row; }
+.markdown th, .markdown td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+.markdown th { background: var(--panel); }
+.markdown ul, .markdown ol { padding-left: 22px; margin: 6px 0; }
+.markdown hr { border: 0; border-top: 1px solid var(--line); margin: 14px 0; }
+.markdown code { font-size: 12px; }

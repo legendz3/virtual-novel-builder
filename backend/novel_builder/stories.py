@@ -165,8 +165,9 @@ def new_story(owner: str, title: str) -> dict:
 # ---------- read-only file access for the app's cards (gallery, previews, status) ----------
 
 MEDIA_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp",
+               ".mp3": "audio/mpeg", ".wav": "audio/wav", ".ogg": "audio/ogg", ".m4a": "audio/mp4",
                ".md": "text/plain; charset=utf-8", ".json": "application/json"}
-_IMAGE = re.compile(r"\.(png|jpe?g|webp)$", re.I)
+_MEDIA = re.compile(r"\.(png|jpe?g|webp|mp3|wav|ogg|m4a)$", re.I)
 
 
 def _inside(root: Path, rel: str) -> Path:
@@ -187,8 +188,9 @@ def read_file(owner: str, story_id: str, rel: str) -> tuple[bytes, str]:
     return data, media
 
 
-def list_images(owner: str, story_id: str, rel_dir: str) -> list[str]:
+def list_media(owner: str, story_id: str, rel_dir: str) -> list[str]:
+    """Story-relative paths of every image and audio file under rel_dir (for the review galleries)."""
     root = story_root(owner, story_id).resolve()
     base = _inside(root, rel_dir)
     return _guarded(lambda b: sorted(p.relative_to(root).as_posix() for p in b.rglob("*")
-                                     if p.is_file() and _IMAGE.search(p.name)) if b.is_dir() else [], base)
+                                     if p.is_file() and _MEDIA.search(p.name)) if b.is_dir() else [], base)

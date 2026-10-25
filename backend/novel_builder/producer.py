@@ -59,7 +59,10 @@ gates the change does not touch by marking them done again. Finish with QA and d
    Read the file's first line yourself: REVISION REQUIRED -> update_status("graphic_designer", "pending") and go back to 4.
 6. `request_author_approval("approve_art", "production/chapter-XX/director-review.md", summary)`.
    Approved -> update_status("art_review", "done"). Changes requested -> graphic_designer with the notes, then 5 again.
-7. developer -> implement, generate planned speech, run lint/tests/build -> update_status("developer", "done")
+7. developer -> implement, generate planned speech, run lint/tests/build. The author approves each speech clip on a card
+   while the developer works. If the pass generated or replaced speech, `request_author_approval("approve_audio",
+   "production/chapter-XX/audio", summary)` so the author can listen. Changes requested -> developer regenerates exactly the
+   clips named in the notes, then ask again. -> update_status("developer", "done")
 8. qa (RUNTIME QA mode) -> qa-report.md -> read its first line yourself. QA PASSED -> update_status("qa", "done").
    QA FAILED -> route the highest-priority defect's owner (WRITER/DIRECTOR/GRAPHIC_DESIGNER/DEVELOPER) with the report path;
    update_status(<that stage>, "pending") and continue forward from there. After 3 QA failures in a row, stop and ask the author.

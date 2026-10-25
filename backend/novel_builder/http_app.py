@@ -49,7 +49,7 @@ app = Starlette(routes=[
     Route("/stories/new", _json(lambda r: stories.new_story(_owner(r), _body(r).get("title", ""))), methods=["POST"]),
     Route("/stories/load", _json(lambda r: stories.add_folder(_owner(r), _body(r).get("path", ""))), methods=["POST"]),
     Route("/stories/{story_id}/file", _file),
-    Route("/stories/{story_id}/images", _json(lambda r: {"images": stories.list_images(
+    Route("/stories/{story_id}/media", _json(lambda r: {"files": stories.list_media(
         _owner(r), r.path_params["story_id"], r.query_params.get("dir", ""))})),
     Route("/stories/{story_id}/play", _json(lambda r: play.status(_root(r)))),
     Route("/stories/{story_id}/play", _json(lambda r: play.start(_root(r))), methods=["POST"]),

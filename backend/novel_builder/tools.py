@@ -219,7 +219,8 @@ def make_producer_tools(backend, story_id: str):
     @tool
     def request_author_approval(gate: str, file: str, summary: str, runtime: ToolRuntime) -> str:
         """Pause and ask the author to approve an artifact. gate: "approve_script" (after the Writer),
-        "approve_character_design" (a generated design sheet) or "approve_art" (after the Director approves the art).
+        "approve_character_design" (a generated design sheet), "approve_art" (after the Director approves the art) or
+        "approve_audio" (after the Developer generated speech; file = the chapter's audio folder).
         file: story-relative path of the artifact. summary: 1-3 sentences on what to review.
         Returns the author's decision and notes."""
         decision = interrupt({"type": "approval", "gate": gate, "project": story_id, "chapter": _chapter(runtime),

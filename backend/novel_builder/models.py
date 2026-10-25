@@ -4,12 +4,95 @@ from dataclasses import dataclass, field
 
 from langchain.chat_models import init_chat_model
 from langchain_openai import ChatOpenAI
+from openai.types.responses import ResponseFunctionCallArgumentsDeltaEvent
+from pydantic import model_validator
 
 from novel_builder import codex_oauth
 
 
+class _ArgsDeltas:
+    """The Codex backend can stream a function call's arguments only in its `.done` event; langchain-openai assembles tool
+    calls from `.delta` events, so parallel tool calls arrived with empty args. Emits the full arguments as one delta
+    for any call that streamed none."""
+
+    def __init__(self):
+        self.streamed = set()
+
+    def __call__(self, event) -> list:
+        if event.type == "response.function_call_arguments.delta":
+            self.streamed.add(event.item_id)
+        elif event.type == "response.function_call_arguments.done" and event.item_id not in self.streamed:
+            return [ResponseFunctionCallArgumentsDeltaEvent(
+                type="response.function_call_arguments.delta", delta=event.arguments, item_id=event.item_id,
+                output_index=event.output_index, sequence_number=event.sequence_number), event]
+        return [event]
+
+
+class _CodexStream:
+    def __init__(self, stream):
+        self._stream = stream
+
+    def __enter__(self):
+        self._stream.__enter__()
+        return self
+
+    def __exit__(self, *exc):
+        return self._stream.__exit__(*exc)
+
+    def __iter__(self):
+        fix = _ArgsDeltas()
+        for event in self._stream:
+            yield from fix(event)
+
+    async def __aenter__(self):
+        await self._stream.__aenter__()
+        return self
+
+    async def __aexit__(self, *exc):
+        return await self._stream.__aexit__(*exc)
+
+    async def __aiter__(self):
+        fix = _ArgsDeltas()
+        async for event in self._stream:
+            for fixed in fix(event):
+                yield fixed
+
+
+class _CodexResponses:
+    def __init__(self, responses):
+        self._responses = responses
+
+    def __getattr__(self, name):
+        return getattr(self._responses, name)
+
+    def create(self, **kwargs):
+        result = self._responses.create(**kwargs)
+        if hasattr(result, "__await__"):
+            async def wrapped():
+                return _CodexStream(await result)
+            return wrapped()
+        return _CodexStream(result)
+
+
+class _CodexClient:
+    def __init__(self, client):
+        self._client = client
+        self.responses = _CodexResponses(client.responses)
+
+    def __getattr__(self, name):
+        return getattr(self._client, name)
+
+
 class CodexChatOpenAI(ChatOpenAI):
     """ChatOpenAI for the Codex backend, which rejects system messages and takes them as `instructions` (as Aubrey sends)."""
+
+    @model_validator(mode="after")
+    def _codex_streams(self):
+        for attr in ("root_client", "root_async_client"):
+            client = getattr(self, attr)
+            if client is not None and not isinstance(client, _CodexClient):
+                setattr(self, attr, _CodexClient(client))
+        return self
 
     def _get_request_payload(self, input_, *, stop=None, **kwargs) -> dict:
         payload = super()._get_request_payload(input_, stop=stop, **kwargs)
