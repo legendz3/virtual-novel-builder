@@ -46,6 +46,24 @@ def _registered(owner: str) -> list[dict]:
     return json.loads(path.read_text()) if path.exists() else []
 
 
+THREADS_DIR = ROOT / ".data" / "threads"
+
+
+def threads(owner: str) -> dict[str, str]:
+    """The current conversation thread per "<story>:<chapter|story>", shared by every browser the owner uses."""
+    path = THREADS_DIR / f"{slugify(owner)}.json"
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def set_thread(owner: str, key: str, thread_id: str) -> dict[str, str]:
+    if not re.fullmatch(r"[a-z0-9-]+:(story|\d+)", key) or not re.fullmatch(r"[0-9a-f-]{36}", thread_id):
+        raise StoryError("Invalid thread key or id")
+    current = {**threads(owner), key: thread_id}
+    THREADS_DIR.mkdir(parents=True, exist_ok=True)
+    (THREADS_DIR / f"{slugify(owner)}.json").write_text(json.dumps(current, indent=2) + "\n")
+    return current
+
+
 def _save_registry(owner: str, entries: list[dict]) -> None:
     REGISTRY_DIR.mkdir(parents=True, exist_ok=True)
     _registry_path(owner).write_text(json.dumps(entries, indent=2) + "\n")

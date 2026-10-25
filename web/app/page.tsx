@@ -29,10 +29,25 @@ function save(key: string, value: unknown) {
 
 const threadKey = (s: Selection) => `${s.story}:${s.chapter ?? "story"}`;
 
-/** One conversation thread per story/chapter, kept across reloads so the producer remembers that chapter's discussion. */
+const saveThread = (key: string, threadId: string) =>
+  fetch(`/api/backend/stories/threads?key=${encodeURIComponent(key)}&thread_id=${threadId}`, { method: "POST" });
+
+/**
+ * One conversation thread per story/chapter, kept on the backend so every browser shows the same chapter history.
+ * Threads only this browser knows (from before the backend kept them) are uploaded once; the backend's choice wins.
+ */
 function useThread(selection: Selection) {
-  const [threads, setThreads] = useState<Record<string, string> | null>(null); // null until read from storage
-  useEffect(() => setThreads(load(THREADS_KEY, {})), []);
+  const [threads, setThreads] = useState<Record<string, string> | null>(null); // null until loaded
+  useEffect(() => {
+    fetch("/api/backend/stories/threads")
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then(async ({ threads: server }: { threads: Record<string, string> }) => {
+        const localOnly = Object.entries(load<Record<string, string>>(THREADS_KEY, {})).filter(([k]) => !server[k]);
+        await Promise.all(localOnly.map(([k, id]) => saveThread(k, id)));
+        setThreads({ ...Object.fromEntries(localOnly), ...server });
+      })
+      .catch(() => setThreads(load(THREADS_KEY, {}))); // backend down: fall back to this browser's copy
+  }, []);
   const key = threadKey(selection);
   const threadId = threads?.[key];
   const assign = (replace: boolean) =>
@@ -40,6 +55,7 @@ function useThread(selection: Selection) {
       if (!prev || (!replace && prev[key])) return prev; // never overwrite a chapter's existing thread by accident
       const next = { ...prev, [key]: crypto.randomUUID() };
       save(THREADS_KEY, next);
+      void saveThread(key, next[key]);
       return next;
     });
   useEffect(() => {
