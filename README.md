@@ -21,6 +21,8 @@ cd backend && uv sync && uv run langgraph dev --port 2024
 cd web && npm install && npm run dev
 ```
 
+After the first install, `scripts/dev.sh` starts both; Ctrl-C stops both.
+
 Open http://localhost:3000 and describe the novel and chapter.
 
 **Model access.** Click **Connect ChatGPT** on the board and enter the one-time code at OpenAI's device page. While
