@@ -1,7 +1,7 @@
 """Workspace seam: every file and shell access by agents and tools goes through the backend returned here.
 
 Each story is a folder (created from the starter template under PROJECTS_DIR/<owner>/, or an existing folder the author
-loaded, e.g. ~/Documents/ChatGPT/Beijing Heartbeat). Agents get a backend rooted at that story folder.
+loaded, e.g. ~/repo/Beijing Heartbeat). Agents get a backend rooted at that story folder.
 Hosted later: return a per-tenant sandbox/object-store backend from get_backend.
 """
 

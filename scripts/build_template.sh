@@ -3,7 +3,7 @@
 # Keeps the engine + chapter one as a worked example; drops chapters 2-13, their assets/tests and production history.
 # ponytail: chapter-specific code paths for chapters 2-13 stay in src/ as dead code; a real engine refactor removes them.
 set -euo pipefail
-SRC="${1:-$HOME/Documents/ChatGPT/Beijing Heartbeat}"
+SRC="${1:-$HOME/repo/Beijing Heartbeat}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/templates/vn-starter"
 
