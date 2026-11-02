@@ -7,6 +7,8 @@ SRC="${1:-$HOME/repo/Beijing Heartbeat}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/templates/vn-starter"
 
+# Fail on a bad source path before wiping the current template.
+git -C "$SRC" rev-parse --verify -q HEAD >/dev/null || { echo "no git repo at $SRC; pass the reference project path as the first argument" >&2; exit 1; }
 rm -rf "$OUT" && mkdir -p "$OUT"
 git -C "$SRC" archive HEAD | tar -x -C "$OUT"
 cd "$OUT"
