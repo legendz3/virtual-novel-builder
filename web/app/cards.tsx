@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ArtReview, fileUrl, MediaReview, type Flags, ReviewGallery, TextPreview } from "./visuals";
+import { useEffect, useState } from "react";
+import { ArtReview, fileUrl, type Mark, MediaReview, type Flags, ReviewGallery, TextPreview } from "./visuals";
 
 export type Approval = { type: "approval"; gate: string; project: string; chapter: number; file: string; description: string };
 export type Question = { type: "question"; question: string; options: string[] };
@@ -24,42 +24,75 @@ const GATE_TITLES: Record<string, string> = {
 const chapterOf = (value: Approval) => Number(/chapter-(\d+)/.exec(value.file)?.[1] ?? value.chapter);
 
 /** The artifact under review, shown the way that gate needs it: script text, design sheet, art by type, audio clips. */
-function GateContent({ value, flags, setFlags }: { value: Approval; flags: Flags; setFlags: (f: Flags) => void }) {
+function GateContent({ value, flags, setFlags, marks, setMarks }: { value: Approval; flags: Flags; setFlags: (f: Flags) => void; marks: Mark[]; setMarks: (m: Mark[]) => void }) {
   const chapterDir = `production/chapter-${String(chapterOf(value)).padStart(2, "0")}`;
   const review = { project: value.project, flags, setFlags };
   if (value.gate === "approve_art") return <ArtReview {...review} chapterDir={chapterDir} />;
   if (value.gate === "approve_audio") return <MediaReview {...review} dir={value.file || `${chapterDir}/audio`} />;
   if (/\.(png|jpe?g|webp|mp3|wav|ogg|m4a)$/i.test(value.file))
     return <ReviewGallery {...review} items={[{ path: value.file, label: value.file.split("/").pop() ?? value.file }]} />;
-  if (/\.(md|json)$/i.test(value.file)) return <TextPreview project={value.project} file={value.file} />;
+  if (/\.(md|json)$/i.test(value.file)) return <TextPreview project={value.project} file={value.file} marks={marks} setMarks={setMarks} />;
   return null;
 }
 
+type Draft = { notes?: string; flags?: Flags; marks?: Mark[] };
+
 export function ApprovalCard({ value, resolve }: { value: Approval; resolve: (v: unknown) => void }) {
-  const [notes, setNotes] = useState("");
-  const [flags, setFlags] = useState<Flags>({});
+  // Unsent notes, flags and passage comments survive a reload (this browser only) until the review is sent.
+  // ponytail: a review answered in another browser leaves this draft behind; it reappears only if the same file is reviewed again.
+  const draftKey = `novel-builder:review:${value.project}:${value.gate}:${value.file}`;
+  const [draft] = useState<Draft>(() => {
+    try {
+      return JSON.parse(localStorage.getItem(draftKey) ?? "{}");
+    } catch {
+      return {};
+    }
+  });
+  const [notes, setNotes] = useState(draft.notes ?? "");
+  const [flags, setFlags] = useState<Flags>(draft.flags ?? {});
+  const [marks, setMarks] = useState<Mark[]>(draft.marks ?? []);
+  useEffect(() => {
+    try {
+      if (notes || Object.keys(flags).length || marks.length)
+        localStorage.setItem(draftKey, JSON.stringify({ notes, flags, marks: marks.map(({ range: _, ...m }) => m) }));
+      else localStorage.removeItem(draftKey);
+    } catch {
+      // storage unavailable: the draft just doesn't survive a reload
+    }
+  }, [draftKey, notes, flags, marks]);
+  const send = (answer: { approved: boolean; notes: string }) => {
+    try {
+      localStorage.removeItem(draftKey);
+    } catch {}
+    resolve(answer);
+  };
   const flagged = Object.entries(flags);
-  // Per-item "needs changes" notes become a list the producer passes to the specialist.
-  const allNotes = [notes.trim(), ...flagged.map(([path, note]) => `- ${path}: ${note.trim() || "redo"}`)].filter(Boolean).join("\n");
+  const changes = flagged.length + marks.length;
+  // Per-item "needs changes" notes and per-passage comments become one list the producer passes to the specialist.
+  const allNotes = [
+    notes.trim(),
+    ...flagged.map(([path, note]) => `- ${path}: ${note.trim() || "redo"}`),
+    ...marks.map((m, i) => `${i + 1}. ${m.where ? `[${m.where}] ` : ""}"${m.quote.length > 300 ? `${m.quote.slice(0, 300)}…` : m.quote}" -> ${m.note.trim() || "revise this passage"}`),
+  ].filter(Boolean).join("\n");
   return (
     <div className="gate">
       <h3>{GATE_TITLES[value.gate] ?? "Approval"} · chapter {chapterOf(value)}</h3>
       <p>{value.description}</p>
-      <GateContent value={value} flags={flags} setFlags={setFlags} />
+      <GateContent value={value} flags={flags} setFlags={setFlags} marks={marks} setMarks={setMarks} />
       <a href={fileUrl(value.project, value.file)} target="_blank" rel="noreferrer">
         <code>{value.file}</code>
       </a>
       <textarea
-        placeholder={flagged.length ? "Anything else for the revision (optional)" : "Notes for the revision (required to reject)"}
+        placeholder={changes ? "Anything else for the revision (optional)" : "Notes for the revision (required to reject)"}
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
       />
       <div className="row">
-        <button className="primary" disabled={flagged.length > 0} onClick={() => resolve({ approved: true, notes })}>
+        <button className="primary" disabled={changes > 0} onClick={() => send({ approved: true, notes })}>
           Approve
         </button>
-        <button disabled={!allNotes} onClick={() => resolve({ approved: false, notes: allNotes })}>
-          Request changes{flagged.length ? ` (${flagged.length})` : ""}
+        <button disabled={!allNotes} onClick={() => send({ approved: false, notes: allNotes })}>
+          Request changes{changes ? ` (${changes})` : ""}
         </button>
       </div>
     </div>

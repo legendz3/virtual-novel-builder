@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CopilotChatAssistantMessage, useAgent, useDefaultRenderTool, useRenderTool } from "@copilotkit/react-core/v2";
 import { z } from "zod";
 
@@ -126,23 +126,149 @@ export function ArtReview({ chapterDir, ...review }: Review & { chapterDir: stri
   return <ReviewGallery {...review} items={[...planned, ...other]} />;
 }
 
-/** A story text file inline and scrollable; markdown (scripts, plans, reports) is formatted like the chat. */
-export function TextPreview({ project, file }: { project: string; file: string }) {
+/** A passage the author selected in a text under review, with their comment for the revision. */
+// `raw` and `start` (offset in the text) re-anchor the comment after a reload; `range` is the live passage, when found.
+export type Mark = { id: string; quote: string; raw: string; start: number; where?: string; note: string; range?: Range };
+
+/** The range covering characters [start, end) of root's text. */
+function rangeAt(root: Node, start: number, end: number) {
+  const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  let pos = 0;
+  for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+    const len = n.textContent?.length ?? 0;
+    if (pos <= start && start <= pos + len) range.setStart(n, start - pos);
+    if (pos <= end && end <= pos + len) {
+      range.setEnd(n, end - pos);
+      return range;
+    }
+    pos += len;
+  }
+}
+
+/** A saved comment's passage in the rendered text: at its offset, else wherever its text now appears. */
+function locate(root: Node, m: Mark) {
+  const text = root.textContent ?? "";
+  const start = text.slice(m.start, m.start + m.raw.length) === m.raw ? m.start : text.indexOf(m.raw);
+  return start < 0 || !m.raw ? undefined : rangeAt(root, start, start + m.raw.length);
+}
+const HIGHLIGHT = "review-mark";
+
+/**
+ * A story text file inline and scrollable; markdown (scripts, plans, reports) is formatted like the chat.
+ * With `setMarks`, the author can select any passage and comment on it; all comments go out with the review.
+ */
+export function TextPreview({ project, file, marks = [], setMarks }: { project: string; file: string; marks?: Mark[]; setMarks?: (m: Mark[]) => void }) {
   const [text, setText] = useState<string | null>(null);
+  const box = useRef<HTMLDivElement>(null);
+  const [pending, setPending] = useState<{ range: Range; top: number; left: number } | null>(null);
+  const canMark = !!setMarks;
   useEffect(() => {
     fetch(fileUrl(project, file))
       .then((res) => (res.ok ? res.text() : ""))
       .then(setText)
       .catch(() => setText(""));
   }, [project, file]);
+
+  // Offer "Comment" next to a selection made inside the text.
+  useEffect(() => {
+    if (!canMark) return;
+    const check = () => {
+      const sel = getSelection();
+      const el = box.current;
+      if (!el || !sel || sel.isCollapsed || !el.contains(sel.anchorNode) || !el.contains(sel.focusNode)) return setPending(null);
+      const range = sel.getRangeAt(0);
+      const rect = [...range.getClientRects()].pop() ?? range.getBoundingClientRect();
+      setPending({ range, top: rect.bottom + 6, left: Math.min(rect.right, innerWidth - 120) });
+    };
+    const clear = () => setPending(null); // the button is fixed to the viewport, so it would drift on scroll
+    const events = ["mouseup", "keyup", "touchend"] as const;
+    events.forEach((e) => document.addEventListener(e, check));
+    addEventListener("scroll", clear, true);
+    return () => {
+      events.forEach((e) => document.removeEventListener(e, check));
+      removeEventListener("scroll", clear, true);
+    };
+  }, [canMark]);
+
+  // Paint the commented passages without touching the rendered markdown (CSS Custom Highlight API).
+  // ponytail: one global highlight name, fine while only one review card is open; key it per card if several can be.
+  useEffect(() => {
+    if (!canMark || typeof Highlight === "undefined") return;
+    CSS.highlights.set(HIGHLIGHT, new Highlight(...marks.flatMap((m) => (m.range ? [m.range] : []))));
+    return () => void CSS.highlights.delete(HIGHLIGHT);
+  }, [canMark, marks]);
+
+  // Memoized so typing a comment never re-renders the text (the marks hold live ranges into it).
+  const body = useMemo(
+    () => (text && /\.md$/i.test(file) ? <CopilotChatAssistantMessage.MarkdownRenderer content={text} /> : text),
+    [text, file],
+  );
+  // Comments restored after a reload carry no live range yet: find their passages once the text is on screen
+  // (the markdown renderer fills the box after mount, so retry as it changes).
+  useEffect(() => {
+    const el = box.current;
+    if (!el || !setMarks || marks.every((m) => m.range)) return;
+    const attach = () => {
+      const next = marks.map((m) => (m.range ? m : { ...m, range: locate(el, m) }));
+      if (next.some((m, i) => m.range && !marks[i].range)) setMarks(next);
+    };
+    attach();
+    const watch = new MutationObserver(attach);
+    watch.observe(el, { childList: true, subtree: true, characterData: true });
+    return () => watch.disconnect();
+  }, [body, marks, setMarks]);
   if (text === null) return <p className="muted">Loading…</p>;
   if (!text) return null;
-  return /\.md$/i.test(file) ? (
-    <div className="text-preview markdown">
-      <CopilotChatAssistantMessage.MarkdownRenderer content={text} />
-    </div>
-  ) : (
-    <div className="text-preview">{text}</div>
+
+  const add = () => {
+    if (!pending || !box.current) return;
+    const { range } = pending;
+    const start = range.startContainer;
+    const heading = [...box.current.querySelectorAll("h1,h2,h3")].filter((h) => h.compareDocumentPosition(start) & Node.DOCUMENT_POSITION_FOLLOWING).pop();
+    const quote = range.toString().replace(/\s+/g, " ").trim();
+    const head = document.createRange();
+    head.setStart(box.current, 0);
+    head.setEnd(range.startContainer, range.startOffset);
+    const mark = { id: crypto.randomUUID(), quote, raw: range.toString(), start: head.toString().length, where: heading?.textContent?.trim(), note: "", range: range.cloneRange() };
+    if (quote) setMarks?.([...marks, mark]);
+    getSelection()?.removeAllRanges();
+    setPending(null);
+  };
+  const show = (m: Mark) => (m.range?.startContainer.parentElement ?? box.current)?.scrollIntoView({ block: "center", behavior: "smooth" });
+
+  return (
+    <>
+      <div ref={box} className={`text-preview ${/\.md$/i.test(file) ? "markdown" : ""}`}>{body}</div>
+      {pending && (
+        <button className="mark-add" style={{ top: pending.top, left: pending.left }} onMouseDown={(e) => e.preventDefault()} onClick={add}>
+          + Comment
+        </button>
+      )}
+      {canMark && marks.length === 0 && <p className="muted">Select any passage to comment on it.</p>}
+      {marks.length > 0 && (
+        <ol className="marks">
+          {marks.map((m) => (
+            <li key={m.id}>
+              <button className="quote" title="Show in the text" onClick={() => show(m)}>
+                {m.where && <small>{m.where}</small>}“{m.quote.length > 140 ? `${m.quote.slice(0, 140)}…` : m.quote}”
+              </button>
+              <div className="row">
+                <input
+                  className="reason"
+                  autoFocus
+                  aria-label="Comment on this passage"
+                  placeholder="What should change here?"
+                  value={m.note}
+                  onChange={(e) => setMarks?.(marks.map((x) => (x === m ? { ...m, note: e.target.value } : x)))}
+                />
+                <button aria-label="Remove comment" onClick={() => setMarks?.(marks.filter((x) => x !== m))}>×</button>
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </>
   );
 }
 

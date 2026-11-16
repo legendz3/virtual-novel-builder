@@ -149,3 +149,14 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 syst
 .markdown ul, .markdown ol { padding-left: 22px; margin: 6px 0; }
 .markdown hr { border: 0; border-top: 1px solid var(--line); margin: 14px 0; }
 .markdown code { font-size: 12px; }
+
+/* Passage comments on a text under review */
+::highlight(review-mark) { background: rgba(229, 163, 90, 0.38); }
+.gate button.mark-add { position: fixed; z-index: 50; padding: 4px 10px; font-size: 12px; background: var(--active); border-color: var(--active); color: #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }
+.marks { margin: 8px 0; padding-left: 22px; font-size: 13px; }
+.marks li { margin-bottom: 8px; }
+.gate .marks .quote { display: block; width: 100%; padding: 2px 8px; border: 0; border-left: 3px solid var(--active); border-radius: 0; background: none; text-align: left; color: var(--nb-muted); }
+.marks .quote small { display: block; font-size: 11px; opacity: 0.8; }
+.marks .row { align-items: center; margin-top: 4px; }
+.marks .reason { flex: 1; font: inherit; font-size: 13px; padding: 4px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--text); }
+.gate .marks .row button { padding: 2px 8px; }
